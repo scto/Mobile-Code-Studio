@@ -8,6 +8,7 @@ import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.File
 import javax.inject.Inject
 
 @HiltAndroidApp
@@ -37,14 +38,18 @@ class App : Application(), BootstrapManager {
             onProgress("Selected Android SDK: $sdkVersion")
             
             try {
+                // Update paths in TerminalEnvironment
+                terminalEnvironment.jdkPath = File(filesDir, "jdk-$jdkVersion").absolutePath
+                terminalEnvironment.sdkPath = File(filesDir, "sdk-$sdkVersion").absolutePath
+                
                 // Simulate installation
                 onProgress("Downloading JDK $jdkVersion...")
                 Thread.sleep(1000)
-                onProgress("Extracting JDK $jdkVersion...")
+                onProgress("Extracting JDK $jdkVersion to ${terminalEnvironment.jdkPath}...")
                 Thread.sleep(1000)
                 onProgress("Downloading Android SDK $sdkVersion...")
                 Thread.sleep(1000)
-                onProgress("Extracting Android SDK $sdkVersion...")
+                onProgress("Extracting Android SDK $sdkVersion to ${terminalEnvironment.sdkPath}...")
                 Thread.sleep(1000)
                 onProgress("Bootstrap complete.")
 

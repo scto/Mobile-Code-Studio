@@ -34,6 +34,7 @@ class TerminalEnvironment @Inject constructor() {
         homePath = homeDir.absolutePath
         usrBinPath = usrBinDir.absolutePath
         tmpPath = tmpDir.absolutePath
+        // Default paths, will be updated after selection
         jdkPath = File(filesDir, "jdk").absolutePath
         sdkPath = File(filesDir, "sdk").absolutePath
     }
