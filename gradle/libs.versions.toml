@@ -24,6 +24,9 @@ junit = "4.13.2"
 androidx-junit = "1.1.5"
 androidx-espresso-core = "3.5.1"
 
+# Rosemoe Sora-Editor
+sora-editor = "0.19.0" # Using a recent stable version
+
 [libraries]
 # AndroidX Core
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
@@ -44,6 +47,9 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-junit" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso-core" }
+
+# Rosemoe Sora-Editor
+sora-editor = { group = "io.github.rosemoe.sora-editor", name = "editor", version.ref = "sora-editor" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

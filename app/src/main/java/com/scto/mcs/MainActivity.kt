@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.scto.mcs.feature.dashboard.CreateProjectScreen
+import com.scto.mcs.feature.editor.EditorScreen // Import EditorScreen
 import com.scto.mcs.ui.theme.MobileCodeStudioTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,11 +23,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    CreateProjectScreen(
-                        onTemplateSelected = { template ->
-                            // Handle template selection, e.g., navigate to a project creation form
-                            // For now, let's just log it.
-                            println("Selected template: ${template.name}")
+                    EditorScreen(
+                        onContentChanged = { newContent ->
+                            println("Editor content changed: $newContent")
                         }
                     )
                 }
@@ -40,6 +38,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     MobileCodeStudioTheme {
-        CreateProjectScreen()
+        EditorScreen()
     }
 }
