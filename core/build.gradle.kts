@@ -30,4 +30,6 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
+    // JGit for Git operations
+    implementation("org.eclipse.jgit:org.eclipse.jgit:6.8.0.202311291450-r")
 }
