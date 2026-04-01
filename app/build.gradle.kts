@@ -55,6 +55,7 @@ dependencies {
     implementation(project(":feature:editor"))
     implementation(project(":feature:terminal"))
     implementation(project(":feature:file-browser"))
+    implementation(project(":feature:dashboard"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
