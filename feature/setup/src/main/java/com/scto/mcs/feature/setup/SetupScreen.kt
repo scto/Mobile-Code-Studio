@@ -1,6 +1,8 @@
 package com.scto.mcs.feature.setup
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -8,11 +10,15 @@ import androidx.compose.ui.unit.dp
 import com.scto.mcs.core.BootstrapManager
 
 @Composable
-fun SetupScreen(bootstrapManager: BootstrapManager) {
-    var showDialog by remember { mutableStateOf(true) }
+fun SetupScreen(
+    bootstrapManager: BootstrapManager,
+    onSetupComplete: () -> Unit
+) {
+    var showDialog by remember { mutableStateOf(!bootstrapManager.isEnvironmentSetup()) }
     var selectedJdk by remember { mutableStateOf(17) }
     var selectedSdk by remember { mutableStateOf(34) }
     var logs by remember { mutableStateOf("Waiting for setup...") }
+    val scrollState = rememberScrollState()
 
     if (showDialog) {
         AlertDialog(
@@ -29,10 +35,14 @@ fun SetupScreen(bootstrapManager: BootstrapManager) {
                     }
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("Select Android SDK Version:")
-                    // Simplified selection for brevity
-                    DropdownMenu(expanded = true, onDismissRequest = {}) {
+                    // Simplified selection
+                    Row {
                         listOf(33, 34, 35, 36).forEach { sdk ->
-                            DropdownMenuItem(text = { Text(sdk.toString()) }, onClick = { selectedSdk = sdk })
+                            FilterChip(
+                                selected = selectedSdk == sdk,
+                                onClick = { selectedSdk = sdk },
+                                label = { Text(sdk.toString()) }
+                            )
                         }
                     }
                 }
@@ -40,9 +50,11 @@ fun SetupScreen(bootstrapManager: BootstrapManager) {
             confirmButton = {
                 Button(onClick = {
                     showDialog = false
-                    bootstrapManager.startBootstrap(selectedJdk, selectedSdk) { log ->
+                    bootstrapManager.startBootstrap(selectedJdk, selectedSdk, { log ->
                         logs += "\n$log"
-                    }
+                    }, {
+                        onSetupComplete()
+                    })
                 }) { Text("Start Bootstrap") }
             }
         )
@@ -50,6 +62,12 @@ fun SetupScreen(bootstrapManager: BootstrapManager) {
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Text("Terminal Output:", style = MaterialTheme.typography.titleMedium)
-        Text(logs, modifier = Modifier.fillMaxWidth().weight(1f))
+        Text(
+            logs, 
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .verticalScroll(scrollState)
+        )
     }
 }

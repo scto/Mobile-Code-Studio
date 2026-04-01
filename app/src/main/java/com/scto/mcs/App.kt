@@ -1,6 +1,7 @@
 package com.scto.mcs
 
 import android.app.Application
+import android.content.Context
 import com.scto.mcs.core.BootstrapManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -8,27 +9,35 @@ import kotlinx.coroutines.launch
 
 class App : Application(), BootstrapManager {
 
-    override fun startBootstrap(jdkVersion: Int, sdkVersion: Int, onProgress: (String) -> Unit) {
+    private val prefs by lazy { getSharedPreferences("mcs_prefs", Context.MODE_PRIVATE) }
+
+    override fun isEnvironmentSetup(): Boolean {
+        return prefs.getBoolean("is_bootstrapped", false)
+    }
+
+    override fun startBootstrap(
+        jdkVersion: Int, 
+        sdkVersion: Int, 
+        onProgress: (String) -> Unit, 
+        onComplete: () -> Unit
+    ) {
         CoroutineScope(Dispatchers.IO).launch {
             onProgress("Initializing Termux environment...")
             onProgress("Selected JDK: $jdkVersion")
             onProgress("Selected Android SDK: $sdkVersion")
             
-            // Simulate environment setup
             try {
-                // In a real scenario, we would interact with Termux's package manager (pkg)
-                // or execute scripts in the app's private storage.
-                
+                // Simulate environment setup
                 val process = ProcessBuilder("/system/bin/sh").redirectErrorStream(true).start()
                 val writer = process.outputStream.bufferedWriter()
                 val reader = process.inputStream.bufferedReader()
 
-                // Simulate installation commands
                 writer.write("echo 'Setting up environment variables...'\n")
                 writer.write("export JAVA_HOME=/data/data/com.scto.mcs/files/jdk-$jdkVersion\n")
-                writer.write("export ANDROID_SDK_ROOT=/data/data/com.scto.mcs/files/sdk-$sdkVersion\n")
+                writer.write("export ANDROID_HOME=/data/data/com.scto.mcs/files/sdk-$sdkVersion\n")
+                writer.write("export PATH=\$PATH:\$JAVA_HOME/bin:\$ANDROID_HOME/bin\n")
                 writer.write("echo 'Installing JDK $jdkVersion...'\n")
-                writer.write("sleep 1\n") // Simulate work
+                writer.write("sleep 1\n")
                 writer.write("echo 'Installing Android SDK $sdkVersion...'\n")
                 writer.write("sleep 1\n")
                 writer.write("echo 'Bootstrap complete.'\n")
@@ -40,6 +49,15 @@ class App : Application(), BootstrapManager {
                 }
                 
                 process.waitFor()
+
+                // Save state
+                prefs.edit()
+                    .putBoolean("is_bootstrapped", true)
+                    .putInt("jdk_version", jdkVersion)
+                    .putInt("sdk_version", sdkVersion)
+                    .apply()
+
+                onComplete()
             } catch (e: Exception) {
                 onProgress("Error during bootstrap: ${e.message}")
             }
