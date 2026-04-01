@@ -53,6 +53,9 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 
 # Rosemoe Sora-Editor
 sora-editor = { group = "io.github.rosemoe.sora-editor", name = "editor", version.ref = "sora-editor" }
+sora-editor-lsp = { group = "io.github.rosemoe.sora-editor", name = "editor-lsp", version.ref = "sora-editor" }
+sora-editor-language-textmate = { group = "io.github.rosemoe.sora-editor", name = "editor-language-textmate", version.ref = "sora-editor" }
+sora-editor-language-treesitter = { group = "io.github.rosemoe.sora-editor", name = "editor-language-treesitter", version.ref = "sora-editor" }
 
 # JGit
 jgit = { group = "org.eclipse.jgit", name = "org.eclipse.jgit", version.ref = "jgit" }
