@@ -24,6 +24,13 @@ class TerminalEnvironment @Inject constructor() {
         if (!usrBinDir.exists()) usrBinDir.mkdirs()
         if (!tmpDir.exists()) tmpDir.mkdirs()
         
+        // Create a dummy init.sh
+        val initScript = File(usrBinDir, "init.sh")
+        if (!initScript.exists()) {
+            initScript.writeText("#!/system/bin/sh\nexport PATH=\$PATH\necho 'Environment initialized.'")
+            initScript.setExecutable(true)
+        }
+        
         homePath = homeDir.absolutePath
         usrBinPath = usrBinDir.absolutePath
         tmpPath = tmpDir.absolutePath
