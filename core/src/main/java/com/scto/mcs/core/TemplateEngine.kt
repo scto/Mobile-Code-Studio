@@ -12,8 +12,8 @@ class TemplateEngine @Inject constructor() {
 
         val files = when (templateType) {
             "Empty Compose Activity" -> mapOf(
-                "app/build.gradle.kts" to "plugins { id('com.android.application') }\nandroid { namespace = '$packageName' }",
-                "app/src/main/kotlin/MainActivity.kt" to "package $packageName\nclass MainActivity : ComponentActivity() {}"
+                "app/build.gradle.kts" to "plugins { id('com.android.application') }\nandroid { namespace = '\${packageName}' }",
+                "app/src/main/kotlin/MainActivity.kt" to "package \${packageName}\n\nimport androidx.activity.ComponentActivity\n\nclass MainActivity : ComponentActivity() {}"
             )
             else -> emptyMap()
         }
@@ -21,7 +21,13 @@ class TemplateEngine @Inject constructor() {
         files.forEach { (path, content) ->
             val file = File(targetDir, path)
             file.parentFile?.mkdirs()
-            file.writeText(content)
+            
+            // Placeholder replacement logic
+            val processedContent = content
+                .replace("\${projectName}", projectName)
+                .replace("\${packageName}", packageName)
+            
+            file.writeText(processedContent)
         }
     }
 }
