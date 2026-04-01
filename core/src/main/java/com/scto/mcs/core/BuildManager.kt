@@ -27,12 +27,17 @@ class BuildManager @Inject constructor(
             return
         }
 
+        // Ensure executable permission
         gradlew.setExecutable(true)
 
         val processBuilder = ProcessBuilder(gradlew.absolutePath, task)
         val env = processBuilder.environment()
         env.putAll(terminalEnvironment.getEnvironmentVariables())
-        env["GRADLE_USER_HOME"] = File(projectDir, ".gradle").absolutePath
+        
+        // Set GRADLE_USER_HOME to internal storage
+        val gradleHome = File(projectDir, ".gradle")
+        if (!gradleHome.exists()) gradleHome.mkdirs()
+        env["GRADLE_USER_HOME"] = gradleHome.absolutePath
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
