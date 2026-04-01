@@ -8,12 +8,12 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun CloneProjectDialog(
-    viewModel: CloneViewModel,
+    viewModel: DashboardViewModel,
     onDismiss: () -> Unit
 ) {
     var url by remember { mutableStateOf("") }
     var targetDir by remember { mutableStateOf("/sdcard/mobilecodestudio/my-project") }
-    val uiState by viewModel.uiState.collectAsState()
+    val cloneState by viewModel.cloneState.collectAsState()
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -34,21 +34,26 @@ fun CloneProjectDialog(
                     modifier = Modifier.fillMaxWidth()
                 )
                 
-                if (uiState.isLoading) {
-                    Spacer(modifier = Modifier.height(16.dp))
-                    LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
-                    Text(uiState.progress, style = MaterialTheme.typography.bodySmall)
-                }
-                
-                uiState.error?.let {
-                    Text(it, color = MaterialTheme.colorScheme.error)
+                when (val state = cloneState) {
+                    is CloneState.Cloning -> {
+                        Spacer(modifier = Modifier.height(16.dp))
+                        LinearProgressIndicator(
+                            progress = { state.progress },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+                    is CloneState.Error -> {
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(state.message, color = MaterialTheme.colorScheme.error)
+                    }
+                    else -> {}
                 }
             }
         },
         confirmButton = {
             Button(
                 onClick = { viewModel.cloneRepository(url, targetDir) },
-                enabled = !uiState.isLoading
+                enabled = cloneState !is CloneState.Cloning
             ) {
                 Text("Clone")
             }
