@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.scto.mcs.feature.dashboard.CreateProjectScreen
 import com.scto.mcs.ui.theme.MobileCodeStudioTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,25 +23,23 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    CreateProjectScreen(
+                        onTemplateSelected = { template ->
+                            // Handle template selection, e.g., navigate to a project creation form
+                            // For now, let's just log it.
+                            println("Selected template: ${template.name}")
+                        }
+                    )
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun DefaultPreview() {
     MobileCodeStudioTheme {
-        Greeting("Android")
+        CreateProjectScreen()
     }
 }
