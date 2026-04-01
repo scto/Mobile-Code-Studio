@@ -3,6 +3,7 @@ package com.scto.mcs.core.di
 import android.content.Context
 import com.scto.mcs.core.BuildManager
 import com.scto.mcs.core.EditorConfigManager
+import com.scto.mcs.core.TemplateEngine
 import com.scto.mcs.core.TerminalEnvironment
 import dagger.Module
 import dagger.Provides
@@ -34,5 +35,11 @@ object CoreModule {
         @ApplicationContext context: Context
     ): BuildManager {
         return BuildManager(terminalEnvironment, context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTemplateEngine(): TemplateEngine {
+        return TemplateEngine()
     }
 }
