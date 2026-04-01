@@ -1,18 +1,14 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "com.scto.mcs"
+    namespace = "com.scto.mcs.core.ui"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.scto.mcs"
         minSdk = 26
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -41,7 +37,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlin.get()
+        kotlinCompilerExtensionVersion = libs.versions.kotlin.get() // Use version ref from libs.versions.toml
     }
     packaging {
         resources {
@@ -51,11 +47,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:ui"))
-    implementation(project(":feature:editor"))
-    implementation(project(":feature:terminal"))
-    implementation(project(":feature:file-browser"))
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
