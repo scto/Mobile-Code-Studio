@@ -29,7 +29,10 @@ object CoreModule {
 
     @Provides
     @Singleton
-    fun provideBuildManager(terminalEnvironment: TerminalEnvironment): BuildManager {
-        return BuildManager(terminalEnvironment)
+    fun provideBuildManager(
+        terminalEnvironment: TerminalEnvironment,
+        @ApplicationContext context: Context
+    ): BuildManager {
+        return BuildManager(terminalEnvironment, context)
     }
 }
