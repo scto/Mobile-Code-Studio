@@ -19,6 +19,10 @@ class TemplateEngine @Inject constructor() {
                 "app/src/main/AndroidManifest.xml" to "<manifest package='${config.packageName}'></manifest>",
                 "app/src/main/kotlin/MainActivity.kt" to "package ${config.packageName}\nclass MainActivity : ComponentActivity() {}"
             )
+            "Android Library" -> mapOf(
+                "library/build.gradle.kts" to "plugins { id('com.android.library') }\nandroid { namespace = '${config.packageName}' }",
+                "library/src/main/AndroidManifest.xml" to "<manifest package='${config.packageName}'></manifest>"
+            )
             else -> emptyMap()
         }
 
