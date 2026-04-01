@@ -11,14 +11,10 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.scto.mcs.core.ui.theme.MobileCodeStudioTheme
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.rosemoe.sora.widget.CodeEditor
-import io.github.rosemoe.sora.langs.textmate.registry.FileProviderRegistry
 import io.github.rosemoe.sora.langs.textmate.registry.ThemeRegistry
 import io.github.rosemoe.sora.langs.textmate.registry.LanguageRegistry
 import io.github.rosemoe.sora.langs.textmate.TextMateColorScheme
 import io.github.rosemoe.sora.langs.textmate.TextMateLanguage
-import io.github.rosemoe.sora.widget.schemes.SchemeBasic
-import io.github.rosemoe.sora.text.Content
-import io.github.rosemoe.sora.text.SplitText
 
 @Composable
 fun EditorScreen(
@@ -28,6 +24,16 @@ fun EditorScreen(
 ) {
     val context = LocalContext.current
     val codeEditor = remember {
+        // Initialize TextMate grammars and themes if not already done
+        // These assets must be placed in app/src/main/assets/textmate/
+        // with subdirectories for 'languages' and 'themes', and 'languages.json'/'themes.json' index files.
+        if (LanguageRegistry.getInstance().getLanguage("source.kotlin") == null) {
+            LanguageRegistry.getInstance().loadLanguages(context.assets, "textmate/")
+        }
+        if (ThemeRegistry.getInstance().getTheme("darcula") == null) {
+            ThemeRegistry.getInstance().loadThemes(context.assets, "textmate/")
+        }
+
         CodeEditor(context).apply {
             layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -36,25 +42,23 @@ fun EditorScreen(
             // Basic setup for demonstration
             typefaceText = android.graphics.Typeface.MONOSPACE
             setTextSize(14f)
-            setEditorLanguage(TextMateLanguage.create("source.kotlin", true)) // Set Kotlin language
+
+            // Set Kotlin language and Darcula theme for syntax highlighting
+            setEditorLanguage(TextMateLanguage.create("source.kotlin", true))
             setColorScheme(TextMateColorScheme.create(context, ThemeRegistry.getInstance().getTheme("darcula")))
+
+            // Basic IDE features
             setEdgeEffectEnabled(true)
             setOverScrollEnabled(true)
-            setPinLineVerticalList(false)
+            setPinLineVerticalList(false) // Pin line numbers to the left
             setCursorAnimation(true)
             setHighlightCurrentLine(true)
-            setScalable(true)
+            setScalable(true) // Pinch-to-zoom
             setScrollBarEnabled(true)
-
-            // Setup syntax highlighting
-            FileProviderRegistry.getInstance().addFileProvider(object : FileProviderRegistry.Delegate {
-                override fun getContent(path: String): Content {
-                    return SplitText("// Placeholder for syntax highlighting files")
-                }
-            })
-            LanguageRegistry.getInstance().loadLanguages(context.assets, "textmate/")
-            ThemeRegistry.getInstance().loadThemes(context.assets, "textmate/")
-
+            setLineNumberPanelWidth(50.dp.value.toInt()) // Adjust line number panel width
+            setLineNumberEnabled(true)
+            setWordWrap(false)
+            setTabWidth(4)
 
             // Set initial text
             setText(initialText)
@@ -73,7 +77,6 @@ fun EditorScreen(
         },
         update = { editor ->
             // Update editor properties if needed based on Compose state changes
-            // For now, we are just using initialText and onContentChanged
         }
     )
 }
