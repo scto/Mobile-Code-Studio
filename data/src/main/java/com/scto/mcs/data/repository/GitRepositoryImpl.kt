@@ -13,8 +13,15 @@ class GitRepositoryImpl @Inject constructor(
 ) : GitRepository {
 
     override suspend fun clone(url: String, targetPath: String): Result<Unit> = suspendCoroutine { continuation ->
-        // Simplified callback handling
-        // In a real app, we'd need to pass a proper callback
+        gitManager.clone(url, File(targetPath), null, object : GitCallback {
+            override fun onProgress(progress: Float, message: String) {}
+            override fun onError(error: String) {
+                continuation.resume(Result.failure(Exception(error)))
+            }
+            override fun onSuccess() {
+                continuation.resume(Result.success(Unit))
+            }
+        })
     }
 
     override suspend fun getStatus(projectDir: File): String = gitManager.status(projectDir)
