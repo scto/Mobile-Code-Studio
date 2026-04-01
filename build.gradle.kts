@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.scto.mcs.feature.settings"
+    namespace = "com.scto.mcs.feature.debug"
     compileSdk = 36
 
     defaultConfig {
@@ -17,4 +17,5 @@ dependencies {
     implementation(project(":core"))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 }
