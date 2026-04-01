@@ -28,7 +28,6 @@ class TerminalSessionManager @Inject constructor(
         val environment = processBuilder.environment()
         environment.putAll(env)
         
-        // Set working directory to HOME
         processBuilder.directory(java.io.File(terminalEnvironment.homePath))
         
         process = processBuilder.redirectErrorStream(true).start()

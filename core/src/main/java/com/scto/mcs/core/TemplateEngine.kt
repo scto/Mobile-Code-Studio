@@ -1,6 +1,5 @@
 package com.scto.mcs.core
 
-import com.scto.mcs.core.model.ProjectConfig
 import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -8,36 +7,21 @@ import javax.inject.Singleton
 @Singleton
 class TemplateEngine @Inject constructor() {
 
-    fun generateProject(config: ProjectConfig) {
-        val rootDir = File(config.targetDir)
-        if (!rootDir.exists()) rootDir.mkdirs()
+    fun generateProject(projectName: String, packageName: String, targetDir: File, templateType: String) {
+        if (!targetDir.exists()) targetDir.mkdirs()
 
-        // Define template structure
-        val files = when (config.templateType) {
+        val files = when (templateType) {
             "Empty Compose Activity" -> mapOf(
-                "app/build.gradle.kts" to "plugins { id('com.android.application') }\nandroid { namespace = '${config.packageName}' }",
-                "app/src/main/AndroidManifest.xml" to "<manifest package='${config.packageName}'></manifest>",
-                "app/src/main/kotlin/MainActivity.kt" to "package ${config.packageName}\nclass MainActivity : ComponentActivity() {}"
-            )
-            "Android Library" -> mapOf(
-                "library/build.gradle.kts" to "plugins { id('com.android.library') }\nandroid { namespace = '${config.packageName}' }",
-                "library/src/main/AndroidManifest.xml" to "<manifest package='${config.packageName}'></manifest>"
+                "app/build.gradle.kts" to "plugins { id('com.android.application') }\nandroid { namespace = '$packageName' }",
+                "app/src/main/kotlin/MainActivity.kt" to "package $packageName\nclass MainActivity : ComponentActivity() {}"
             )
             else -> emptyMap()
         }
 
         files.forEach { (path, content) ->
-            val file = File(rootDir, path)
+            val file = File(targetDir, path)
             file.parentFile?.mkdirs()
-            val processedContent = content
-                .replace("\${PROJECT_NAME}", config.projectName)
-                .replace("\${PACKAGE_NAME}", config.packageName)
-            file.writeText(processedContent)
+            file.writeText(content)
         }
-
-        // Inject dummy gradlew
-        val gradlew = File(rootDir, "gradlew")
-        gradlew.writeText("#!/bin/sh\necho 'Gradle wrapper'")
-        gradlew.setExecutable(true)
     }
 }

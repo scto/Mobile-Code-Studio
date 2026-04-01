@@ -24,9 +24,7 @@ class EditorConfigManager @Inject constructor(private val context: Context) {
     }
 
     fun syncWithComposeTheme(isDark: Boolean, colorScheme: ColorScheme): EditorColorScheme {
-        // Map Material 3 colors to EditorColorScheme
         return EditorColorScheme().apply {
-            // Example mapping
             setColor(EditorColorScheme.TEXT_NORMAL, colorScheme.onSurface.hashCode())
             setColor(EditorColorScheme.BACKGROUND, colorScheme.surface.hashCode())
         }

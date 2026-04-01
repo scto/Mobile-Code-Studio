@@ -1,10 +1,7 @@
 package com.scto.mcs.core.di
 
 import android.content.Context
-import com.scto.mcs.core.BuildManager
-import com.scto.mcs.core.EditorConfigManager
-import com.scto.mcs.core.TemplateEngine
-import com.scto.mcs.core.TerminalEnvironment
+import com.scto.mcs.core.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,28 +15,32 @@ object CoreModule {
 
     @Provides
     @Singleton
-    fun provideTerminalEnvironment(): TerminalEnvironment {
-        return TerminalEnvironment()
-    }
+    fun provideTerminalEnvironment(): TerminalEnvironment = TerminalEnvironment()
 
     @Provides
     @Singleton
-    fun provideEditorConfigManager(@ApplicationContext context: Context): EditorConfigManager {
-        return EditorConfigManager(context)
-    }
+    fun provideTerminalSessionManager(terminalEnvironment: TerminalEnvironment): TerminalSessionManager = 
+        TerminalSessionManager(terminalEnvironment)
 
     @Provides
     @Singleton
-    fun provideBuildManager(
-        terminalEnvironment: TerminalEnvironment,
-        @ApplicationContext context: Context
-    ): BuildManager {
-        return BuildManager(terminalEnvironment, context)
-    }
+    fun provideEditorConfigManager(@ApplicationContext context: Context): EditorConfigManager = 
+        EditorConfigManager(context)
 
     @Provides
     @Singleton
-    fun provideTemplateEngine(): TemplateEngine {
-        return TemplateEngine()
-    }
+    fun provideFileSystemUtils(@ApplicationContext context: Context): FileSystemUtils = 
+        FileSystemUtils(context)
+
+    @Provides
+    @Singleton
+    fun provideGitManager(): GitManager = GitManager()
+
+    @Provides
+    @Singleton
+    fun provideTemplateEngine(): TemplateEngine = TemplateEngine()
+
+    @Provides
+    @Singleton
+    fun provideLogcatManager(): LogcatManager = LogcatManager()
 }

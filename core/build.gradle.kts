@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -30,8 +32,10 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    // JGit for Git operations
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-compiler:2.51.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     implementation("org.eclipse.jgit:org.eclipse.jgit:6.8.0.202311291450-r")
-    // Sora Editor
-    implementation("io.github.Rosemoe.sora-editor:editor:0.23.0")
+    implementation("io.github.rosemoe.sora-editor:editor:0.23.0")
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 }
