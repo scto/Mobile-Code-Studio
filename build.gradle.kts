@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.scto.mcs.feature.setup"
+    namespace = "com.scto.mcs.feature.settings"
     compileSdk = 36
 
     defaultConfig {
