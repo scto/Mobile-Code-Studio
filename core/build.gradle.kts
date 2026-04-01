@@ -32,4 +32,6 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     // JGit for Git operations
     implementation("org.eclipse.jgit:org.eclipse.jgit:6.8.0.202311291450-r")
+    // Sora Editor
+    implementation("io.github.Rosemoe.sora-editor:editor:0.23.0")
 }
