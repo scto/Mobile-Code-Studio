@@ -1,24 +1,29 @@
 package com.scto.mcs.feature.setup
 
+import android.view.ViewGroup
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import com.scto.mcs.core.BootstrapManager
+import com.scto.mcs.core.TerminalSessionManager
+import com.termux.view.TerminalView
 
 @Composable
 fun SetupScreen(
     bootstrapManager: BootstrapManager,
+    terminalSessionManager: TerminalSessionManager,
     onSetupComplete: () -> Unit
 ) {
     var showDialog by remember { mutableStateOf(!bootstrapManager.isEnvironmentSetup()) }
     var selectedJdk by remember { mutableStateOf(17) }
     var selectedSdk by remember { mutableStateOf(34) }
-    var logs by remember { mutableStateOf("Waiting for setup...") }
-    val scrollState = rememberScrollState()
+    
+    LaunchedEffect(Unit) {
+        terminalSessionManager.startSession()
+    }
 
     if (showDialog) {
         AlertDialog(
@@ -35,7 +40,6 @@ fun SetupScreen(
                     }
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("Select Android SDK Version:")
-                    // Simplified selection
                     Row {
                         listOf(33, 34, 35, 36).forEach { sdk ->
                             FilterChip(
@@ -51,7 +55,7 @@ fun SetupScreen(
                 Button(onClick = {
                     showDialog = false
                     bootstrapManager.startBootstrap(selectedJdk, selectedSdk, { log ->
-                        logs += "\n$log"
+                        terminalSessionManager.execute("echo '$log'")
                     }, {
                         onSetupComplete()
                     })
@@ -62,12 +66,16 @@ fun SetupScreen(
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Text("Terminal Output:", style = MaterialTheme.typography.titleMedium)
-        Text(
-            logs, 
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .verticalScroll(scrollState)
+        AndroidView(
+            modifier = Modifier.fillMaxWidth().weight(1f),
+            factory = { context ->
+                TerminalView(context).apply {
+                    layoutParams = ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                    )
+                }
+            }
         )
     }
 }

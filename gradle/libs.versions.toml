@@ -30,6 +30,9 @@ sora-editor = "0.23.0"
 # JGit
 jgit = "6.8.0.202311291450-r"
 
+# Termux
+termux-view = "0.1.0"
+
 [libraries]
 # AndroidX Core
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
@@ -59,6 +62,9 @@ sora-editor-language-treesitter = { group = "io.github.rosemoe.sora-editor", nam
 
 # JGit
 jgit = { group = "org.eclipse.jgit", name = "org.eclipse.jgit", version.ref = "jgit" }
+
+# Termux
+termux-view = { group = "com.termux", name = "termux-view", version.ref = "termux-view" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
