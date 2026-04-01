@@ -25,7 +25,10 @@ androidx-junit = "1.1.5"
 androidx-espresso-core = "3.5.1"
 
 # Rosemoe Sora-Editor
-sora-editor = "0.19.0" # Using a recent stable version
+sora-editor = "0.23.0"
+
+# JGit
+jgit = "6.8.0.202311291450-r"
 
 [libraries]
 # AndroidX Core
@@ -50,6 +53,9 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 
 # Rosemoe Sora-Editor
 sora-editor = { group = "io.github.rosemoe.sora-editor", name = "editor", version.ref = "sora-editor" }
+
+# JGit
+jgit = { group = "org.eclipse.jgit", name = "org.eclipse.jgit", version.ref = "jgit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
