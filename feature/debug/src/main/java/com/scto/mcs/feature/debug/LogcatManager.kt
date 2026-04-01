@@ -25,6 +25,7 @@ class LogcatManager @Inject constructor() {
         
         CoroutineScope(Dispatchers.IO).launch {
             try {
+                // Using -v long to get structured output
                 process = ProcessBuilder("logcat", "-v", "long").start()
                 val reader = BufferedReader(InputStreamReader(process!!.inputStream))
                 
