@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -51,11 +53,15 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
     implementation(project(":core:ui"))
     implementation(project(":feature:editor"))
     implementation(project(":feature:terminal"))
     implementation(project(":feature:file-browser"))
     implementation(project(":feature:dashboard"))
+
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-compiler:2.51.1")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
