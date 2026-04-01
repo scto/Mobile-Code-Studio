@@ -1,6 +1,7 @@
 package com.scto.mcs.core.di
 
 import android.content.Context
+import com.scto.mcs.core.BuildManager
 import com.scto.mcs.core.EditorConfigManager
 import com.scto.mcs.core.TerminalEnvironment
 import dagger.Module
@@ -24,5 +25,11 @@ object CoreModule {
     @Singleton
     fun provideEditorConfigManager(@ApplicationContext context: Context): EditorConfigManager {
         return EditorConfigManager(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideBuildManager(terminalEnvironment: TerminalEnvironment): BuildManager {
+        return BuildManager(terminalEnvironment)
     }
 }
