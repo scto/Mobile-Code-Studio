@@ -2,10 +2,10 @@ package com.scto.mcs.feature.setup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.scto.mcs.core.PermissionChecker
 import com.scto.mcs.core.TermuxInstaller
 import com.scto.mcs.core.constants.TermuxConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -14,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SetupViewModel @Inject constructor(
-    private val termuxInstaller: TermuxInstaller
+    private val termuxInstaller: TermuxInstaller,
+    private val permissionChecker: PermissionChecker
 ) : ViewModel() {
 
     private val _progress = MutableStateFlow(0f)
@@ -24,6 +25,11 @@ class SetupViewModel @Inject constructor(
     val logs: StateFlow<String> = _logs
 
     fun startSetup() {
+        if (!permissionChecker.hasManageExternalStoragePermission()) {
+            _logs.value = "Fehler: Berechtigung für externen Speicher fehlt."
+            return
+        }
+
         viewModelScope.launch {
             try {
                 _logs.value = "Starte Download..."
