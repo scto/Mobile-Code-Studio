@@ -9,6 +9,17 @@ android {
 
     defaultConfig {
         minSdk = 26
+        
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
+    }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
 
     compileOptions {
@@ -19,4 +30,14 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+}
+
+dependencies {
+    // UI Components & Theme
+    implementation("androidx.compose.ui:ui:1.7.0")
+    implementation("androidx.compose.material3:material3:1.3.0")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.7.0")
+    
+    // Core Utilities
+    implementation("androidx.core:core-ktx:1.15.0")
 }
