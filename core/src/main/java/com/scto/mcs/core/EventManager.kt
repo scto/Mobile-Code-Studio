@@ -6,6 +6,10 @@ import javax.inject.Singleton
 @Singleton
 class EventManager @Inject constructor() {
 
+    fun clearListeners() {
+        // Implementierung zum Löschen der Listener
+    }
+
     fun post(event: Any) {
         // Einfache Event-Bus Implementierung
     }
