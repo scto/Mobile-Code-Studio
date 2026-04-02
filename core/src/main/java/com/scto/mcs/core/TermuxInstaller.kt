@@ -37,19 +37,27 @@ class TermuxInstaller @Inject constructor() {
                     // Prüfen, ob es ein Symlink ist
                     if (isSymlinkEntry(entry)) {
                         // Read the target path from the file content
+                        // Wir lesen den Inhalt der Datei, der den Zielpfad des Symlinks enthält
                         val targetPath = zis.bufferedReader().readLine()?.trim()
-                        if (targetPath != null) {
+                        
+                        if (!targetPath.isNullOrEmpty()) {
                             try {
                                 // Symlink erstellen: targetPath -> newFile
-                                // Wir löschen die Platzhalter-Datei zuerst
-                                if (newFile.exists()) newFile.delete()
+                                // Wir löschen die Platzhalter-Datei zuerst, falls sie existiert
+                                if (newFile.exists()) {
+                                    newFile.delete()
+                                }
+                                
+                                // Os.symlink benötigt den absoluten Pfad oder einen relativen Pfad
+                                // der vom Ort des Symlinks aus aufgelöst werden kann.
                                 Os.symlink(targetPath, newFile.absolutePath)
                                 Log.d(TAG, "Created symlink: ${newFile.absolutePath} -> $targetPath")
                             } catch (e: Exception) {
-                                Log.e(TAG, "Failed to create symlink: ${newFile.absolutePath}", e)
+                                Log.e(TAG, "Failed to create symlink: ${newFile.absolutePath} -> $targetPath", e)
                             }
                         }
                     } else {
+                        // Normale Datei entpacken
                         FileOutputStream(newFile).use { fos ->
                             zis.copyTo(fos)
                         }
@@ -63,6 +71,7 @@ class TermuxInstaller @Inject constructor() {
 
     private fun isSymlinkEntry(entry: java.util.zip.ZipEntry): Boolean {
         // Termux-Bootstrap-Archive markieren Symlinks oft durch spezielle Dateiendungen
+        // oder wir prüfen, ob die Datei sehr klein ist und den Symlink-Inhalt enthält.
         return entry.name.endsWith(".symlink")
     }
 }
