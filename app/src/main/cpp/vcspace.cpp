@@ -12,14 +12,18 @@
 class JniString {
 public:
     JniString(JNIEnv* env, jstring jstr) : env_(env), jstr_(jstr) {
-        str_ = env_->GetStringUTFChars(jstr_, nullptr);
+        if (jstr_ != nullptr) {
+            str_ = env_->GetStringUTFChars(jstr_, nullptr);
+        } else {
+            str_ = nullptr;
+        }
     }
     ~JniString() {
         if (str_) {
             env_->ReleaseStringUTFChars(jstr_, str_);
         }
     }
-    const char* c_str() const { return str_; }
+    const char* c_str() const { return str_ ? str_ : ""; }
 private:
     JNIEnv* env_;
     jstring jstr_;
