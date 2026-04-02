@@ -1,6 +1,7 @@
 package com.scto.mcs.data.repository
 
 import com.scto.mcs.core.FileSystemUtils
+import com.scto.mcs.data.mapper.ProjectMapper
 import com.scto.mcs.domain.model.FileNode
 import com.scto.mcs.domain.model.Project
 import com.scto.mcs.domain.repository.ProjectRepository
@@ -14,7 +15,7 @@ class ProjectRepositoryImpl @Inject constructor(
     override fun listProjects(): List<Project> {
         return fileSystemUtils.listFiles(fileSystemUtils.getRootDirectory())
             .filter { it.isDirectory }
-            .map { Project(it.name, it.absolutePath, "Unknown") }
+            .map { ProjectMapper.toDomain(it) }
     }
 
     override fun createProject(name: String, type: String): Project {
