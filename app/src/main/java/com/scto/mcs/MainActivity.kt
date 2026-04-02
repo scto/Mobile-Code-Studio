@@ -2,7 +2,7 @@ package com.scto.mcs
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.scto.mcs.core.EditorEngine
+import com.scto.mcs.feature.editor.EditorEngine
 
 class MainActivity : AppCompatActivity() {
     
