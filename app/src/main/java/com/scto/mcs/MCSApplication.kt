@@ -1,6 +1,7 @@
 package com.scto.mcs
 
 import android.app.Application
+import android.content.res.Configuration
 import com.scto.mcs.core.EditorConfigManager
 import com.scto.mcs.core.TerminalEnvironment
 import dagger.hilt.android.HiltAndroidApp
@@ -23,10 +24,16 @@ class MCSApplication : Application() {
         
         // Initialisierung im Hintergrund, um den App-Start nicht zu blockieren
         applicationScope.launch {
-            // TerminalEnvironment.initFolders() wird bereits im init-Block des Singletons aufgerufen
-            // Wir stellen hier sicher, dass die Konfiguration geladen wird
             editorConfigManager.preloadGrammars()
             editorConfigManager.loadDefaultTheme()
+            // Initiales Theme anwenden
+            editorConfigManager.applyThemeBasedOnConfiguration(resources.configuration)
         }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        // Auf System-Theme-Wechsel reagieren
+        editorConfigManager.applyThemeBasedOnConfiguration(newConfig)
     }
 }
