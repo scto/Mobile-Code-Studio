@@ -18,18 +18,27 @@ class EditorViewModel @Inject constructor(
     private val terminalEnvironment: TerminalEnvironment
 ) : ViewModel() {
 
-    private val _code = MutableStateFlow("")
-    val code: StateFlow<String> = _code
+    private val _state = MutableStateFlow(EditorState())
+    val state: StateFlow<EditorState> = _state
 
     private val _buildOutput = MutableStateFlow("")
     val buildOutput: StateFlow<String> = _buildOutput
 
     fun loadFile(file: File) {
-        _code.value = editorRepository.readFile(file)
+        viewModelScope.launch(Dispatchers.IO) {
+            val content = editorRepository.readFile(file)
+            _state.value = _state.value.copy(file = file, content = content, isDirty = false)
+        }
     }
 
-    fun saveFile(file: File, content: String) {
+    fun saveFile(content: String) {
+        val file = _state.value.file ?: return
         editorRepository.saveFile(file, content)
+        _state.value = _state.value.copy(content = content, isDirty = false)
+    }
+
+    fun updateContent(content: String) {
+        _state.value = _state.value.copy(content = content, isDirty = true)
     }
 
     fun runBuild(projectDir: File) {
