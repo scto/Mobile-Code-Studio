@@ -2,10 +2,10 @@ package com.scto.mcs.feature.editor
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.scto.mcs.core.EditorConfigManager
 import com.scto.mcs.core.TerminalEnvironment
 import com.scto.mcs.domain.repository.EditorRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -15,7 +15,6 @@ import javax.inject.Inject
 @HiltViewModel
 class EditorViewModel @Inject constructor(
     private val editorRepository: EditorRepository,
-    private val editorConfigManager: EditorConfigManager,
     private val terminalEnvironment: TerminalEnvironment
 ) : ViewModel() {
 
@@ -34,13 +33,31 @@ class EditorViewModel @Inject constructor(
     }
 
     fun runBuild(projectDir: File) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _buildOutput.value = "Starting build in ${projectDir.absolutePath}..."
-            val env = terminalEnvironment.getEnv()
-            _buildOutput.value += "\nUsing JAVA_HOME: ${env["JAVA_HOME"]}"
-            _buildOutput.value += "\nExecuting ./gradlew assembleDebug..."
-            // Simulation des Build-Prozesses
-            _buildOutput.value += "\nBuild successful!"
+            
+            try {
+                val processBuilder = ProcessBuilder("./gradlew", "assembleDebug")
+                processBuilder.directory(projectDir)
+                
+                // Set environment variables
+                val env = processBuilder.environment()
+                env.putAll(terminalEnvironment.getEnv())
+                
+                val process = processBuilder.start()
+                val output = process.inputStream.bufferedReader().readText()
+                val error = process.errorStream.bufferedReader().readText()
+                
+                val exitCode = process.waitFor()
+                
+                _buildOutput.value = if (exitCode == 0) {
+                    "Build successful!\n$output"
+                } else {
+                    "Build failed (Exit $exitCode):\n$error"
+                }
+            } catch (e: Exception) {
+                _buildOutput.value = "Build error: ${e.message}"
+            }
         }
     }
 }

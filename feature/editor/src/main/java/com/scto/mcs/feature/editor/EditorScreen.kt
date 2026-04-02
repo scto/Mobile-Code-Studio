@@ -1,51 +1,48 @@
 package com.scto.mcs.feature.editor
 
-import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.scto.mcs.core.ui.components.MCSToolbar
 import com.scto.mcs.core.ui.components.TerminalText
-import io.github.jksys.lib.editor.CodeEditor
+import java.io.File
 
 @Composable
 fun EditorScreen(
     viewModel: EditorViewModel = hiltViewModel(),
-    onBuildClick: () -> Unit
+    file: File
 ) {
-    val code by viewModel.code.collectAsState()
+    var code by remember { mutableStateOf("") }
     val buildOutput by viewModel.buildOutput.collectAsState()
 
-    Scaffold(
-        topBar = { MCSToolbar(title = "Editor") },
-        bottomBar = {
-            Column(modifier = Modifier.fillMaxWidth().height(150.dp).padding(8.dp)) {
-                Button(onClick = onBuildClick) { Text("Build") }
-                TerminalText(text = buildOutput, modifier = Modifier.fillMaxSize())
-            }
-        }
-    ) { padding ->
-        AndroidView(
-            modifier = Modifier.fillMaxSize().padding(padding),
-            factory = { context ->
-                CodeEditor(context).apply {
-                    layoutParams = ViewGroup.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT
-                    )
-                    setText(code)
-                }
-            },
-            update = { editor ->
-                if (editor.text.toString() != code) {
-                    editor.setText(code)
-                }
-            }
+    LaunchedEffect(file) {
+        viewModel.loadFile(file)
+        code = viewModel.code.value
+    }
+
+    Column(modifier = Modifier.fillMaxSize()) {
+        MCSToolbar(title = file.name)
+        
+        OutlinedTextField(
+            value = code,
+            onValueChange = { code = it },
+            modifier = Modifier.weight(1f).fillMaxWidth(),
+            label = { Text("Code") }
         )
+        
+        Button(
+            onClick = { 
+                viewModel.saveFile(file, code)
+                viewModel.runBuild(file.parentFile!!) 
+            },
+            modifier = Modifier.padding(8.dp)
+        ) {
+            Text("Build")
+        }
+        
+        TerminalText(text = buildOutput, modifier = Modifier.height(150.dp).fillMaxWidth().padding(8.dp))
     }
 }
