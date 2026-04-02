@@ -25,7 +25,8 @@ class EditorConfigManager @Inject constructor(
      * Lädt TextMate Grammatiken asynchron aus dem assets/textmate Verzeichnis.
      */
     suspend fun preloadGrammars() = withContext(Dispatchers.IO) {
-        // Hier würde die Logik zum Laden der languages.json stehen
+        // Hier wird die Logik zum Laden der languages.json implementiert
+        // Dies ist ein Platzhalter für die tatsächliche Registrierung der Grammatiken
     }
 
     /**
@@ -37,8 +38,12 @@ class EditorConfigManager @Inject constructor(
     }
 
     private fun loadTheme(fileName: String, themeName: String) {
-        // Erstellt ThemeModel aus Assets
-        // ThemeModel.create(fileName)
+        try {
+            val themeModel = ThemeModel.create(fileName)
+            // Hier würde das Theme in der Registry registriert werden
+        } catch (e: Exception) {
+            // Fehlerbehandlung beim Laden des Themes
+        }
     }
 
     /**
@@ -47,6 +52,6 @@ class EditorConfigManager @Inject constructor(
     fun applyThemeBasedOnConfiguration(configuration: Configuration) {
         val isNightMode = (configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
         val themeName = if (isNightMode) "darcula" else "QuietLight"
-        // Logik zum Anwenden des Themes
+        // Logik zum Anwenden des Themes auf den Editor
     }
 }
