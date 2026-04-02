@@ -3,9 +3,9 @@ package com.scto.mcs.core.ui.components
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Folder
+import androidx.compose.material.icons.filled.Hub
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Terminal
-import androidx.compose.material.icons.filled.Hub
 import androidx.compose.ui.graphics.vector.ImageVector
 
 object MCSIcons {
