@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core")) // For FileProvider, FileSystemUtils
     implementation(project(":core:ui"))
     implementation(project(":domain:file-browser"))
 

@@ -4,12 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.scto.mcs.feature.terminal"
-    compileSdk = 36 // Aligned with project specification
+    namespace = "com.scto.mcs.feature.debug"
+    compileSdk = 36
 
     defaultConfig {
-        minSdk = 26 // Aligned with project specification
-
+        minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -26,12 +25,11 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    // Terminal might use compose for UI, adding relevant compose blocks
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlin.get() // Aligned with project's Kotlin version
+        kotlinCompilerExtensionVersion = libs.versions.kotlin.get()
     }
     packaging {
         resources {
@@ -41,13 +39,22 @@ android {
 }
 
 dependencies {
-    implementation(project(":core")) // For TerminalEnvironment
+    implementation(project(":core")) // For LogcatManager
     implementation(project(":core:ui"))
-    implementation(project(":domain:terminal"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
 }
