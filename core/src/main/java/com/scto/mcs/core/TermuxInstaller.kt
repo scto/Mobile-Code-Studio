@@ -10,9 +10,19 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class TermuxInstaller @Inject constructor() {
+class TermuxInstaller @Inject constructor(
+    private val bootstrapConfig: BootstrapConfig
+) {
 
     private val TAG = "TermuxInstaller"
+
+    /**
+     * Gibt die passende Bootstrap-URL basierend auf der Geräte-Architektur zurück.
+     * Delegiert an BootstrapConfig.
+     */
+    fun getBootstrapUrl(): String {
+        return bootstrapConfig.getBootstrapUrl()
+    }
 
     /**
      * Entpackt ein Termux-Bootstrap-Archiv und korrigiert Symlinks.
