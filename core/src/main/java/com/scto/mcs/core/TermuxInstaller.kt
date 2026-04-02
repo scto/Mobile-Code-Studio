@@ -1,7 +1,7 @@
 package com.scto.mcs.core
 
 import android.system.Os
-import android.system.OsConstants
+import android.util.Log
 import com.scto.mcs.core.constants.TermuxConstants
 import java.io.File
 import java.io.FileOutputStream
@@ -11,6 +11,8 @@ import javax.inject.Singleton
 
 @Singleton
 class TermuxInstaller @Inject constructor() {
+
+    private val TAG = "TermuxInstaller"
 
     /**
      * Entpackt ein Termux-Bootstrap-Archiv und korrigiert Symlinks.
@@ -29,19 +31,25 @@ class TermuxInstaller @Inject constructor() {
                 if (entry.isDirectory) {
                     newFile.mkdirs()
                 } else {
-                    // Prüfen, ob es ein Symlink ist (im Bootstrap oft als Datei mit Pfadinhalt)
+                    // Ensure parent directory exists
+                    newFile.parentFile?.mkdirs()
+
+                    // Prüfen, ob es ein Symlink ist
                     if (isSymlinkEntry(entry)) {
-                        val targetPath = zis.bufferedReader().readLine()
-                        try {
-                            // Symlink erstellen: targetPath -> newFile
-                            // Wir löschen die Platzhalter-Datei zuerst
-                            if (newFile.exists()) newFile.delete()
-                            Os.symlink(targetPath, newFile.absolutePath)
-                        } catch (e: Exception) {
-                            // Logging für Debugging
+                        // Read the target path from the file content
+                        val targetPath = zis.bufferedReader().readLine()?.trim()
+                        if (targetPath != null) {
+                            try {
+                                // Symlink erstellen: targetPath -> newFile
+                                // Wir löschen die Platzhalter-Datei zuerst
+                                if (newFile.exists()) newFile.delete()
+                                Os.symlink(targetPath, newFile.absolutePath)
+                                Log.d(TAG, "Created symlink: ${newFile.absolutePath} -> $targetPath")
+                            } catch (e: Exception) {
+                                Log.e(TAG, "Failed to create symlink: ${newFile.absolutePath}", e)
+                            }
                         }
                     } else {
-                        newFile.parentFile?.mkdirs()
                         FileOutputStream(newFile).use { fos ->
                             zis.copyTo(fos)
                         }
@@ -55,7 +63,6 @@ class TermuxInstaller @Inject constructor() {
 
     private fun isSymlinkEntry(entry: java.util.zip.ZipEntry): Boolean {
         // Termux-Bootstrap-Archive markieren Symlinks oft durch spezielle Dateiendungen
-        // oder wir prüfen den Dateityp, falls das Archiv dies unterstützt.
         return entry.name.endsWith(".symlink")
     }
 }
