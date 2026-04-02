@@ -1,5 +1,7 @@
 [versions]
 kotlin = "2.2.0"
+gradle = "8.11.2"
+java = "17"
 composeBom = "2025.01.00"
 hilt = "2.51"
 jgit = "6.8.0"
