@@ -1,7 +1,6 @@
 package com.scto.mcs.core
 
 import android.content.Context
-import android.content.res.Configuration
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.github.rosemoe.sora.langs.textmate.registry.FileProviderRegistry
 import io.github.rosemoe.sora.langs.textmate.registry.model.ThemeModel
@@ -17,41 +16,22 @@ class EditorConfigManager @Inject constructor(
 ) {
 
     init {
-        // Register assets resolver for TextMate
         FileProviderRegistry.getInstance().setRegistry(AssetsFileResolver(context.assets))
     }
 
-    /**
-     * Lädt TextMate Grammatiken asynchron aus dem assets/textmate Verzeichnis.
-     */
-    suspend fun preloadGrammars() = withContext(Dispatchers.IO) {
-        // Hier wird die Logik zum Laden der languages.json implementiert
-        // Dies ist ein Platzhalter für die tatsächliche Registrierung der Grammatiken
+    suspend fun loadDefaultThemes() = withContext(Dispatchers.IO) {
+        // Lädt Themes aus editor/schemes/
+        loadTheme("editor/schemes/darcula.json", "darcula")
+        loadTheme("editor/schemes/quietlight.json", "quietlight")
     }
 
-    /**
-     * Initialisiert Sora-Editor Themes und Farbschemata.
-     */
-    fun loadDefaultTheme() {
-        loadTheme("darcula.json", "darcula")
-        loadTheme("QuietLight.tmTheme.json", "QuietLight")
-    }
-
-    private fun loadTheme(fileName: String, themeName: String) {
+    private fun loadTheme(path: String, name: String) {
         try {
-            val themeModel = ThemeModel.create(fileName)
-            // Hier würde das Theme in der Registry registriert werden
+            val themeModel = ThemeModel.create(path)
+            // Registrierung in der Sora-Editor Registry
+            io.github.rosemoe.sora.langs.textmate.registry.ThemeRegistry.getInstance().loadTheme(name, themeModel)
         } catch (e: Exception) {
-            // Fehlerbehandlung beim Laden des Themes
+            // Fehlerbehandlung
         }
-    }
-
-    /**
-     * Wählt dynamisch zwischen "darcula" (Night) und "QuietLight" (Day) basierend auf dem System-UI-Mode.
-     */
-    fun applyThemeBasedOnConfiguration(configuration: Configuration) {
-        val isNightMode = (configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
-        val themeName = if (isNightMode) "darcula" else "QuietLight"
-        // Logik zum Anwenden des Themes auf den Editor
     }
 }

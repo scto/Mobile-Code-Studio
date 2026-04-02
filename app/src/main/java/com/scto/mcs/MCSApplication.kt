@@ -1,8 +1,9 @@
 package com.scto.mcs
 
 import android.app.Application
-import android.content.res.Configuration
+import com.scto.mcs.core.CrashHandler
 import com.scto.mcs.core.EditorConfigManager
+import com.scto.mcs.core.EventManager
 import com.scto.mcs.core.TerminalEnvironment
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
@@ -16,24 +17,20 @@ class MCSApplication : Application() {
 
     @Inject lateinit var terminalEnvironment: TerminalEnvironment
     @Inject lateinit var editorConfigManager: EditorConfigManager
+    @Inject lateinit var crashHandler: CrashHandler
+    @Inject lateinit var eventManager: EventManager
 
     private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     override fun onCreate() {
         super.onCreate()
         
-        // Initialisierung im Hintergrund, um den App-Start nicht zu blockieren
-        applicationScope.launch {
-            editorConfigManager.preloadGrammars()
-            editorConfigManager.loadDefaultTheme()
-            // Initiales Theme anwenden
-            editorConfigManager.applyThemeBasedOnConfiguration(resources.configuration)
-        }
-    }
+        // CrashHandler initialisieren
+        crashHandler.init()
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        // Auf System-Theme-Wechsel reagieren
-        editorConfigManager.applyThemeBasedOnConfiguration(newConfig)
+        // Initialisierung im Hintergrund
+        applicationScope.launch {
+            editorConfigManager.loadDefaultThemes()
+        }
     }
 }
