@@ -1,11 +1,13 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt.android)
+    id("kotlin-kapt")
 }
 
 android {
     namespace = "com.scto.mcs.data"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 26
@@ -23,4 +25,10 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":core"))
+    
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    
+    implementation(libs.jgit)
 }
