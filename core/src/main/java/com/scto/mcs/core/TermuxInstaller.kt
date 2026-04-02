@@ -1,10 +1,12 @@
 package com.scto.mcs.core
 
-import android.system.Os
 import android.util.Log
 import com.scto.mcs.core.constants.TermuxConstants
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
+import java.net.URL
 import java.util.zip.ZipInputStream
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -17,17 +19,26 @@ class TermuxInstaller @Inject constructor(
     private val TAG = "TermuxInstaller"
 
     /**
-     * Gibt die passende Bootstrap-URL basierend auf der Geräte-Architektur zurück.
-     * Delegiert an BootstrapConfig.
+     * Lädt das Bootstrap-Archiv herunter.
      */
-    fun getBootstrapUrl(): String {
-        return bootstrapConfig.getBootstrapUrl()
+    suspend fun downloadBootstrap(destination: File): Boolean = withContext(Dispatchers.IO) {
+        try {
+            val url = URL(bootstrapConfig.getBootstrapUrl())
+            url.openStream().use { input ->
+                FileOutputStream(destination).use { output ->
+                    input.copyTo(output)
+                }
+            }
+            true
+        } catch (e: Exception) {
+            Log.e(TAG, "Download failed", e)
+            false
+        }
     }
 
     /**
-     * Entpackt ein Termux-Bootstrap-Archiv und korrigiert Symlinks.
-     * Da Android keine Symlinks in normalen Verzeichnissen unterstützt,
-     * müssen diese nach dem Entpacken manuell via Os.symlink wiederhergestellt werden.
+     * Entpackt ein Termux-Bootstrap-Archiv, korrigiert Symlinks via NativeBridge
+     * und setzt die korrekten Berechtigungen für Binärdateien.
      */
     fun installBootstrap(zipFile: File) {
         val targetDir = File(TermuxConstants.FILES_PATH)
@@ -41,35 +52,31 @@ class TermuxInstaller @Inject constructor(
                 if (entry.isDirectory) {
                     newFile.mkdirs()
                 } else {
-                    // Ensure parent directory exists
                     newFile.parentFile?.mkdirs()
 
-                    // Prüfen, ob es ein Symlink ist
                     if (isSymlinkEntry(entry)) {
-                        // Read the target path from the file content
-                        // Wir lesen den Inhalt der Datei, der den Zielpfad des Symlinks enthält
+                        // Symlink-Ziel aus dem Dateiinhalt lesen
                         val targetPath = zis.bufferedReader().readLine()?.trim()
-                        
                         if (!targetPath.isNullOrEmpty()) {
-                            try {
-                                // Symlink erstellen: targetPath -> newFile
-                                // Wir löschen die Platzhalter-Datei zuerst, falls sie existiert
-                                if (newFile.exists()) {
-                                    newFile.delete()
-                                }
-                                
-                                // Os.symlink benötigt den absoluten Pfad oder einen relativen Pfad
-                                // der vom Ort des Symlinks aus aufgelöst werden kann.
-                                Os.symlink(targetPath, newFile.absolutePath)
-                                Log.d(TAG, "Created symlink: ${newFile.absolutePath} -> $targetPath")
-                            } catch (e: Exception) {
-                                Log.e(TAG, "Failed to create symlink: ${newFile.absolutePath} -> $targetPath", e)
+                            if (newFile.exists()) newFile.delete()
+                            
+                            // NativeBridge für Symlink-Erstellung nutzen
+                            val result = NativeBridge.createSymlink(targetPath, newFile.absolutePath)
+                            if (result != 0) {
+                                Log.e(TAG, "Failed to create symlink: ${newFile.absolutePath} -> $targetPath")
                             }
                         }
                     } else {
                         // Normale Datei entpacken
                         FileOutputStream(newFile).use { fos ->
                             zis.copyTo(fos)
+                        }
+                        
+                        // Berechtigungen setzen: chmod 700 für Binaries
+                        if (newFile.absolutePath.startsWith(TermuxConstants.BIN)) {
+                            newFile.setExecutable(true, true) // ownerOnly = true
+                            newFile.setReadable(true, true)
+                            newFile.setWritable(true, true)
                         }
                     }
                 }
@@ -80,8 +87,6 @@ class TermuxInstaller @Inject constructor(
     }
 
     private fun isSymlinkEntry(entry: java.util.zip.ZipEntry): Boolean {
-        // Termux-Bootstrap-Archive markieren Symlinks oft durch spezielle Dateiendungen
-        // oder wir prüfen, ob die Datei sehr klein ist und den Symlink-Inhalt enthält.
         return entry.name.endsWith(".symlink")
     }
 }
