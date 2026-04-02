@@ -6,6 +6,7 @@ plugins {
 android {
     namespace = "com.scto.mcs"
     compileSdk = 35
+    ndkVersion = "26.1.10909125"
 
     defaultConfig {
         applicationId = "com.scto.mcs"
@@ -13,6 +14,16 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
+
+        ndk {
+            abiFilters.addAll(listOf("arm64-v8a", "armeabi-v7a", "x86_64"))
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path = "src/main/cpp/CMakeLists.txt"
+        }
     }
 
     buildFeatures {
