@@ -24,7 +24,10 @@ class ProjectRepositoryImpl @Inject constructor(
     }
 
     override fun deleteProject(project: Project) {
-        fileSystemUtils.deleteFile(File(project.path))
+        val file = File(project.path)
+        if (file.exists()) {
+            file.deleteRecursively()
+        }
     }
 
     override fun getProjectTree(project: Project): FileNode {
