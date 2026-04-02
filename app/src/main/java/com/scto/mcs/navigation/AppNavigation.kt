@@ -14,15 +14,18 @@ fun AppNavigation(
     navController: NavHostController,
     editorEngine: EditorEngine
 ) {
-    NavHost(navController = navController, startDestination = Screen.Dashboard.route) {
+    NavHost(navController = navController, startDestination = Screen.Onboarding.route) {
+        composable(Screen.Onboarding.route) {
+            Text("Onboarding Placeholder")
+        }
+        composable(Screen.Setup.route) {
+            Text("Setup Placeholder")
+        }
         composable(Screen.Dashboard.route) {
             Text("Dashboard Placeholder")
         }
         composable(Screen.Editor.route) {
             EditorScreen(engine = editorEngine)
-        }
-        composable(Screen.Onboarding.route) {
-            Text("Onboarding Placeholder")
         }
         composable(Screen.Settings.route) {
             Text("Settings Placeholder")
