@@ -1,7 +1,5 @@
 package com.scto.mcs
 
-package com.scto.mcs
-
 import android.app.Application
 import com.scto.mcs.core.EditorConfigManager
 import com.scto.mcs.core.TerminalEnvironment
