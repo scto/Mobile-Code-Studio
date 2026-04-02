@@ -1,29 +1,51 @@
 package com.scto.mcs.feature.editor
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.scto.mcs.core.ui.components.MCSToolbar
+import com.scto.mcs.core.ui.components.TerminalText
+import io.github.jksys.lib.editor.CodeEditor
 
 @Composable
-fun EditorScreen(engine: EditorEngine) {
-    val code by engine.codeContent.collectAsState()
+fun EditorScreen(
+    viewModel: EditorViewModel = hiltViewModel(),
+    onBuildClick: () -> Unit
+) {
+    val code by viewModel.code.collectAsState()
+    val buildOutput by viewModel.buildOutput.collectAsState()
 
     Scaffold(
-        modifier = Modifier.fillMaxSize()
-    ) { innerPadding ->
-        TextField(
-            value = code,
-            onValueChange = { engine.updateCode(it) },
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            label = { Text("Code Editor") }
+        topBar = { MCSToolbar(title = "Editor") },
+        bottomBar = {
+            Column(modifier = Modifier.fillMaxWidth().height(150.dp).padding(8.dp)) {
+                Button(onClick = onBuildClick) { Text("Build") }
+                TerminalText(text = buildOutput, modifier = Modifier.fillMaxSize())
+            }
+        }
+    ) { padding ->
+        AndroidView(
+            modifier = Modifier.fillMaxSize().padding(padding),
+            factory = { context ->
+                CodeEditor(context).apply {
+                    layoutParams = ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                    )
+                    setText(code)
+                }
+            },
+            update = { editor ->
+                if (editor.text.toString() != code) {
+                    editor.setText(code)
+                }
+            }
         )
     }
 }
