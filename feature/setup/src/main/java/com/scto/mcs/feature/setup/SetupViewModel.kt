@@ -24,7 +24,7 @@ class SetupViewModel @Inject constructor(
     val logs: StateFlow<String> = _logs
 
     fun startSetup() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             try {
                 _logs.value = "Starte Download..."
                 _progress.value = 0.1f

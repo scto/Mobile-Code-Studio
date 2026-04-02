@@ -41,8 +41,9 @@ class TermuxInstaller @Inject constructor(
     /**
      * Entpackt ein Termux-Bootstrap-Archiv, korrigiert Symlinks via NativeBridge
      * und setzt die korrekten Berechtigungen für Binärdateien.
+     * Diese Methode ist nun eine suspend-Funktion für korrekte Coroutine-Integration.
      */
-    fun installBootstrap(zipFile: File) {
+    suspend fun installBootstrap(zipFile: File) = withContext(Dispatchers.IO) {
         val targetDir = File(TermuxConstants.FILES_PATH)
         if (!targetDir.exists()) targetDir.mkdirs()
 
