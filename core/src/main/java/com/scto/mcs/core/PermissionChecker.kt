@@ -13,6 +13,9 @@ class PermissionChecker @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
 
+    /**
+     * Prüft, ob die Berechtigung für den Zugriff auf alle Dateien (Android 11+) vorhanden ist.
+     */
     fun hasManageExternalStoragePermission(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             Environment.isExternalStorageManager()
@@ -21,8 +24,20 @@ class PermissionChecker @Inject constructor(
         }
     }
 
+    /**
+     * Prüft, ob in ein spezifisches Verzeichnis geschrieben werden kann.
+     */
     fun canWriteToPath(path: String): Boolean {
         val file = File(path)
-        return file.canWrite()
+        // Versuche, eine temporäre Datei zu erstellen, um Schreibrechte zu verifizieren
+        return try {
+            if (!file.exists()) file.mkdirs()
+            val testFile = File(file, ".write_test")
+            val success = testFile.createNewFile()
+            if (success) testFile.delete()
+            success
+        } catch (e: Exception) {
+            false
+        }
     }
 }
