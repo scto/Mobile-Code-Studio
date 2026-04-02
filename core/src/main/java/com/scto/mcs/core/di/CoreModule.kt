@@ -7,6 +7,6 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 object CoreModule {
-    // Hier können bei Bedarf Provider-Methoden hinzugefügt werden, 
-    // falls Klassen nicht direkt via @Inject konstruiert werden können.
+    // Da BootstrapConfig und TerminalEnvironment mit @Inject constructor() 
+    // annotiert sind, werden sie automatisch von Hilt bereitgestellt.
 }
