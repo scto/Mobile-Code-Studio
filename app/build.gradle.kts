@@ -13,8 +13,8 @@ android {
         applicationId = "com.scto.mcs"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 100
+        versionName = "0.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -59,6 +59,9 @@ dependencies {
     implementation(project(":feature:terminal"))
     implementation(project(":feature:file-browser"))
     implementation(project(":feature:dashboard"))
+    implementation(project(":feature:onboarding"))
+    implementation(project(":feature:debug"))
+    implementation(project(":feature:settings")) // Assuming feature:settings exists and needs to be linked
 
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-compiler:2.51.1")

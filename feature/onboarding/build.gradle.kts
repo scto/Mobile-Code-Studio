@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "com.scto.mcs.feature.onboarding"
-    compileSdk = 36
+    compileSdk = 36 // Aligned with project specification
 
     defaultConfig {
-        minSdk = 26
-        targetSdk = 35
+        minSdk = 26 // Aligned with project specification
+        targetSdk = 35 // Aligned with project specification
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }

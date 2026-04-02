@@ -5,10 +5,10 @@ plugins {
 
 android {
     namespace = "com.scto.mcs.core.ui"
-    compileSdk = 34
+    compileSdk = 36 // Aligned with project specification
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 26 // Aligned with project specification
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -36,7 +36,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = libs.versions.kotlin.get() // Aligned with project's Kotlin version
     }
     packaging {
         resources {

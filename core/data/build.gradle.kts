@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.scto.mcs.core.data"
-    compileSdk = 36
+    compileSdk = 36 // Aligned with project specification
 
     defaultConfig {
         minSdk = 26

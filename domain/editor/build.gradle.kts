@@ -22,6 +22,5 @@ android {
 dependencies {
     // Domain modules typically depend on nothing or other domain/core modules
     // but not presentation or data layers directly.
-    implementation(libs.androidx.core.ktx) // For common utilities like Context
     testImplementation(libs.junit)
 }

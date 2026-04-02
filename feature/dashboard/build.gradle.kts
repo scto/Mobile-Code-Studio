@@ -5,10 +5,10 @@ plugins {
 
 android {
     namespace = "com.scto.mcs.feature.dashboard"
-    compileSdk = 36
+    compileSdk = 36 // Aligned with project specification
 
     defaultConfig {
-        minSdk = 26
+        minSdk = 26 // Aligned with project specification
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -31,7 +31,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlin.get()
+        kotlinCompilerExtensionVersion = libs.versions.kotlin.get() // Aligned with project's Kotlin version
     }
     packaging {
         resources {
@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core")) // Required for GitManager
     implementation(project(":core:ui"))
     implementation(project(":domain:dashboard"))
 
@@ -59,8 +60,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    // Redundant dependencies below
+    // implementation(libs.androidx.lifecycle.runtime.ktx)
+    // testImplementation(libs.junit)
+    // androidTestImplementation(libs.androidx.junit)
+    // androidTestImplementation(libs.androidx.espresso.core)
 }

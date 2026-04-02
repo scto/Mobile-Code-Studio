@@ -31,7 +31,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlin.get()
+        kotlinCompilerExtensionVersion = libs.versions.kotlin.get() // Aligned with project's Kotlin version
     }
     packaging {
         resources {
@@ -53,8 +53,11 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    // Sora Editor dependency
+    // Sora Editor dependencies
     implementation(libs.sora.editor)
+    implementation(libs.sora.editor.lsp)
+    implementation(libs.sora.editor.language.textmate)
+    implementation(libs.sora.editor.language.treesitter)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -63,8 +66,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    // Redundant dependencies below
+    // implementation(libs.androidx.lifecycle.runtime.ktx)
+    // testImplementation(libs.junit)
+    // androidTestImplementation(libs.androidx.junit)
+    // androidTestImplementation(libs.androidx.espresso.core)
 }

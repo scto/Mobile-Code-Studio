@@ -5,10 +5,10 @@ plugins {
 
 android {
     namespace = "com.scto.mcs.feature.terminal"
-    compileSdk = 36
+    compileSdk = 36 // Aligned with project specification
 
     defaultConfig {
-        minSdk = 26
+        minSdk = 26 // Aligned with project specification
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -25,6 +25,18 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
+    }
+    // Terminal might use compose for UI, adding relevant compose blocks
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.kotlin.get() // Aligned with project's Kotlin version
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 

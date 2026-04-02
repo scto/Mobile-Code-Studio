@@ -36,6 +36,8 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:2.51.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     implementation("org.eclipse.jgit:org.eclipse.jgit:6.8.0.202311291450-r")
-    implementation("io.github.rosemoe.sora-editor:editor:0.23.0")
+    implementation(libs.sora.editor)
+    implementation(libs.sora.editor.language.textmate) // For TextMateLanguage
+    // Consider adding sora-editor-lsp if LSP features are used directly in core, otherwise in editor feature.
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 }

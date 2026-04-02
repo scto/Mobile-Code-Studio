@@ -1,11 +1,13 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt") // Required for Hilt
+    id("com.google.dagger.hilt.android") // Required for Hilt
 }
 
 android {
     namespace = "com.scto.mcs.data.editor"
-    compileSdk = 36
+    compileSdk = 36 // Aligned with project specification
 
     defaultConfig {
         minSdk = 26
@@ -31,6 +33,9 @@ android {
 dependencies {
     implementation(project(":domain:editor"))
     implementation(project(":core:data"))
+
+    implementation("com.google.dagger:hilt-android:2.51.1") // Hilt dependency
+    kapt("com.google.dagger:hilt-compiler:2.51.1") // Hilt annotation processor
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
