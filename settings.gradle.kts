@@ -14,6 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MobileCodeStudio"
 include(":app")
+include(":core") // Add the top-level core module
 include(":core:ui")
 include(":core:data")
 include(":feature:editor")
