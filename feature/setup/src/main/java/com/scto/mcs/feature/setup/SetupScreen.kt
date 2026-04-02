@@ -18,7 +18,7 @@ fun SetupScreen(viewModel: SetupViewModel = hiltViewModel()) {
         MCSToolbar(title = "Terminal Setup")
         
         Column(modifier = Modifier.padding(16.dp)) {
-            Button(onClick = { viewModel.startSetup("17", "35") }) {
+            Button(onClick = { viewModel.startSetup() }) {
                 Text("Installation starten")
             }
             

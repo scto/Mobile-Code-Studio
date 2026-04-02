@@ -2,17 +2,19 @@ package com.scto.mcs.feature.setup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.scto.mcs.core.TerminalEnvironment
+import com.scto.mcs.core.TermuxInstaller
+import com.scto.mcs.core.constants.TermuxConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
 class SetupViewModel @Inject constructor(
-    private val terminalEnvironment: TerminalEnvironment
+    private val termuxInstaller: TermuxInstaller
 ) : ViewModel() {
 
     private val _progress = MutableStateFlow(0f)
@@ -21,22 +23,29 @@ class SetupViewModel @Inject constructor(
     private val _logs = MutableStateFlow("Bereit zur Installation...")
     val logs: StateFlow<String> = _logs
 
-    fun startSetup(jdkVersion: String, sdkVersion: String) {
-        viewModelScope.launch {
-            _logs.value = "Initialisiere Terminal..."
-            _progress.value = 0.1f
-            delay(1000)
-            
-            _logs.value = "Installiere JDK $jdkVersion..."
-            _progress.value = 0.4f
-            delay(1500)
-            
-            _logs.value = "Installiere Android SDK $sdkVersion..."
-            _progress.value = 0.7f
-            delay(1500)
-            
-            _logs.value = "Setup abgeschlossen!"
-            _progress.value = 1.0f
+    fun startSetup() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                _logs.value = "Starte Download..."
+                _progress.value = 0.1f
+                
+                val zipFile = File(TermuxConstants.TMP, "bootstrap.zip")
+                val success = termuxInstaller.downloadBootstrap(zipFile)
+                
+                if (success) {
+                    _logs.value = "Download erfolgreich. Entpacke..."
+                    _progress.value = 0.5f
+                    
+                    termuxInstaller.installBootstrap(zipFile)
+                    
+                    _logs.value = "Installation abgeschlossen!"
+                    _progress.value = 1.0f
+                } else {
+                    _logs.value = "Fehler beim Download."
+                }
+            } catch (e: Exception) {
+                _logs.value = "Fehler: ${e.message}"
+            }
         }
     }
 }
