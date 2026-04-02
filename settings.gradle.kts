@@ -1,4 +1,4 @@
-rootProject.name = "your-project-name"
+rootProject.name = "mcs-project"
 
 include(":app")
 include(":core")
