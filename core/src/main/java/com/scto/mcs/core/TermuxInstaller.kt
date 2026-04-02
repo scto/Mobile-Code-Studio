@@ -13,7 +13,8 @@ import javax.inject.Singleton
 
 @Singleton
 class TermuxInstaller @Inject constructor(
-    private val bootstrapConfig: BootstrapConfig
+    private val bootstrapConfig: BootstrapConfig,
+    private val nativeBridge: NativeBridge
 ) {
 
     private val TAG = "TermuxInstaller"
@@ -61,7 +62,7 @@ class TermuxInstaller @Inject constructor(
                             if (newFile.exists()) newFile.delete()
                             
                             // NativeBridge für Symlink-Erstellung nutzen
-                            val result = NativeBridge.createSymlink(targetPath, newFile.absolutePath)
+                            val result = nativeBridge.createSymlink(targetPath, newFile.absolutePath)
                             if (result != 0) {
                                 Log.e(TAG, "Failed to create symlink: ${newFile.absolutePath} -> $targetPath")
                             }

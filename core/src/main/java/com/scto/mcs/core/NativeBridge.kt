@@ -1,6 +1,10 @@
 package com.scto.mcs.core
 
-object NativeBridge {
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class NativeBridge @Inject constructor() {
 
     init {
         System.loadLibrary("vcspace")
