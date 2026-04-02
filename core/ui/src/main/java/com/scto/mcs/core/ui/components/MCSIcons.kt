@@ -1,6 +1,7 @@
 package com.scto.mcs.core.ui.components
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.Hub
@@ -14,4 +15,5 @@ object MCSIcons {
     val Git: ImageVector = Icons.Default.Hub
     val Play: ImageVector = Icons.Default.PlayArrow
     val Terminal: ImageVector = Icons.Default.Terminal
+    val Build: ImageVector = Icons.Default.Build
 }
