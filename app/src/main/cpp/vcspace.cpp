@@ -3,6 +3,7 @@
 #include <android/log.h>
 #include <unistd.h>
 #include <cerrno>
+#include <cstdio>
 
 #define LOG_TAG "VCSpaceNative"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
@@ -49,4 +50,28 @@ Java_com_scto_mcs_core_NativeBridge_nativeCreateSymlink(JNIEnv* env, jobject /* 
     }
 
     return result;
+}
+
+extern "C" JNIEXPORT jboolean JNICALL
+Java_com_scto_mcs_core_NativeBridge_nativeCheckSymlinkSupport(JNIEnv* env, jobject /* this */, jstring testDir) {
+    JniString dir_str(env, testDir);
+    std::string testFile = std::string(dir_str.c_str()) + "/.symlink_test";
+    std::string linkFile = std::string(dir_str.c_str()) + "/.symlink_test_link";
+
+    // Create a dummy file
+    FILE* f = fopen(testFile.c_str(), "w");
+    if (!f) return JNI_FALSE;
+    fclose(f);
+
+    // Try to create a symlink
+    int result = symlink(testFile.c_str(), linkFile.c_str());
+    bool supported = (result == 0);
+
+    // Cleanup
+    unlink(testFile.c_str());
+    if (supported) {
+        unlink(linkFile.c_str());
+    }
+
+    return supported ? JNI_TRUE : JNI_FALSE;
 }

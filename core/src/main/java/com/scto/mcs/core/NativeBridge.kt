@@ -13,6 +13,7 @@ class NativeBridge @Inject constructor() {
     external fun stringFromJNI(): String
 
     private external fun nativeCreateSymlink(target: String, linkpath: String): Int
+    private external fun nativeCheckSymlinkSupport(testDir: String): Boolean
 
     /**
      * Erstellt einen symbolischen Link.
@@ -27,5 +28,14 @@ class NativeBridge @Inject constructor() {
         } else {
             Result.failure(Exception("Failed to create symlink: $target -> $linkpath (error code: $result)"))
         }
+    }
+
+    /**
+     * Prüft, ob das Dateisystem Symlinks unterstützt.
+     * @param testDir Ein Verzeichnis, in dem der Test durchgeführt werden soll.
+     * @return true, wenn Symlinks unterstützt werden.
+     */
+    fun checkSymlinkSupport(testDir: String): Boolean {
+        return nativeCheckSymlinkSupport(testDir)
     }
 }
