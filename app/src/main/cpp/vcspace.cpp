@@ -32,7 +32,7 @@ Java_com_scto_mcs_core_NativeBridge_stringFromJNI(JNIEnv* env, jobject /* this *
 }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com_scto_mcs_core_NativeBridge_createSymlink(JNIEnv* env, jobject /* this */, jstring target, jstring linkpath) {
+Java_com_scto_mcs_core_NativeBridge_nativeCreateSymlink(JNIEnv* env, jobject /* this */, jstring target, jstring linkpath) {
     JniString target_str(env, target);
     JniString linkpath_str(env, linkpath);
 

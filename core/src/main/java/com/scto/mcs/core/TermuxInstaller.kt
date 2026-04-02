@@ -63,8 +63,8 @@ class TermuxInstaller @Inject constructor(
                             
                             // NativeBridge für Symlink-Erstellung nutzen
                             val result = nativeBridge.createSymlink(targetPath, newFile.absolutePath)
-                            if (result != 0) {
-                                Log.e(TAG, "Failed to create symlink: ${newFile.absolutePath} -> $targetPath")
+                            result.onFailure { e ->
+                                Log.e(TAG, "Failed to create symlink: ${newFile.absolutePath} -> $targetPath", e)
                             }
                         }
                     } else {
