@@ -7,6 +7,7 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
 import java.net.URL
+import java.util.UUID
 import java.util.zip.ZipInputStream
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -59,11 +60,18 @@ class TermuxInstaller @Inject constructor(
                         // Symlink-Ziel aus dem Dateiinhalt lesen
                         val targetPath = zis.bufferedReader().readLine()?.trim()
                         if (!targetPath.isNullOrEmpty()) {
-                            if (newFile.exists()) newFile.delete()
+                            // Atomare Symlink-Erstellung:
+                            // 1. Symlink in TMP erstellen
+                            // 2. Atomar verschieben
+                            val tempSymlink = File(TermuxConstants.TMP, UUID.randomUUID().toString())
                             
-                            // NativeBridge für Symlink-Erstellung nutzen
-                            val result = nativeBridge.createSymlink(targetPath, newFile.absolutePath)
-                            result.onFailure { e ->
+                            val result = nativeBridge.createSymlink(targetPath, tempSymlink.absolutePath)
+                            result.onSuccess {
+                                if (newFile.exists()) newFile.delete()
+                                if (!tempSymlink.renameTo(newFile)) {
+                                    Log.e(TAG, "Failed to move symlink: ${tempSymlink.absolutePath} -> ${newFile.absolutePath}")
+                                }
+                            }.onFailure { e ->
                                 Log.e(TAG, "Failed to create symlink: ${newFile.absolutePath} -> $targetPath", e)
                             }
                         }
