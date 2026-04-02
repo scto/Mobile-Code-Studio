@@ -1,16 +1,13 @@
 package com.scto.mcs.core
 
-import android.content.Context
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.scto.mcs.core.constants.TermuxConstants
 import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class FileSystemUtils @Inject constructor(
-    @ApplicationContext private val context: Context
-) {
-    val rootDir: File get() = File(context.filesDir, "mobilecodestudio")
+class FileSystemUtils @Inject constructor() {
+    val rootDir: File get() = File(TermuxConstants.HOME, "mobilecodestudio")
 
     init {
         if (!rootDir.exists()) {

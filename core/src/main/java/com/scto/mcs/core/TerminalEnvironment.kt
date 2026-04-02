@@ -1,31 +1,31 @@
 package com.scto.mcs.core
 
-import android.content.Context
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.scto.mcs.core.constants.TermuxConstants
 import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class TerminalEnvironment @Inject constructor(
-    @ApplicationContext private val context: Context
-) {
-    val homeDir: File get() = File(context.filesDir, "home")
-    val usrBinDir: File get() = File(homeDir, "usr/bin")
-    val tmpDir: File get() = File(context.cacheDir, "tmp")
+class TerminalEnvironment @Inject constructor() {
 
     init {
-        homeDir.mkdirs()
-        usrBinDir.mkdirs()
-        tmpDir.mkdirs()
+        initFolders()
+    }
+
+    private fun initFolders() {
+        File(TermuxConstants.PREFIX).mkdirs()
+        File(TermuxConstants.HOME).mkdirs()
+        File(TermuxConstants.BIN).mkdirs()
+        File(TermuxConstants.TMP).mkdirs()
     }
 
     fun getEnv(): Map<String, String> {
         return mapOf(
-            "HOME" to homeDir.absolutePath,
-            "PATH" to "${usrBinDir.absolutePath}:/system/bin",
+            "HOME" to TermuxConstants.HOME,
+            "PATH" to "${TermuxConstants.BIN}:/system/bin",
+            "LD_LIBRARY_PATH" to "${TermuxConstants.PREFIX}/lib",
             "JAVA_HOME" to "/system/lib/jvm",
-            "ANDROID_HOME" to "/system/lib/android"
+            "TERM" to "xterm-256color"
         )
     }
 }
