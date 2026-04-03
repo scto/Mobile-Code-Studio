@@ -19,14 +19,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/app/build.gradle.kts",
       "selection": {
         "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 43,
+          "index": 53,
+          "line": 1
         },
         "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 43,
+          "index": 53,
+          "line": 1
         }
       }
     },
@@ -44,7 +44,97 @@
           "line": 0
         }
       }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/gradle.properties",
+      "selection": {
+        "end": {
+          "column": 1,
+          "index": 1097,
+          "line": 28
+        },
+        "start": {
+          "column": 1,
+          "index": 1097,
+          "line": 28
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/gradle/libs.versions.toml",
+      "selection": {
+        "end": {
+          "column": 6,
+          "index": 1213,
+          "line": 23
+        },
+        "start": {
+          "column": 0,
+          "index": 1207,
+          "line": 23
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/build.gradle.kts",
+      "selection": {
+        "end": {
+          "column": 38,
+          "index": 307,
+          "line": 5
+        },
+        "start": {
+          "column": 4,
+          "index": 273,
+          "line": 5
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/core/build.gradle.kts",
+      "selection": {
+        "end": {
+          "column": 36,
+          "index": 164,
+          "line": 4
+        },
+        "start": {
+          "column": 4,
+          "index": 132,
+          "line": 4
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/feature/editor/build.gradle.kts",
+      "selection": {
+        "end": {
+          "column": 36,
+          "index": 200,
+          "line": 5
+        },
+        "start": {
+          "column": 0,
+          "index": 10,
+          "line": 1
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/feature/onboarding/build.gradle.kts",
+      "selection": {
+        "end": {
+          "column": 36,
+          "index": 200,
+          "line": 5
+        },
+        "start": {
+          "column": 36,
+          "index": 200,
+          "line": 5
+        }
+      }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/data/build.gradle.kts"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/feature/onboarding/build.gradle.kts"
 }
