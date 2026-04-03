@@ -1,7 +1,5 @@
 package com.scto.mcs.termux.session
 
-import android.os.Handler
-import android.os.Looper
 import java.io.FileDescriptor
 import java.io.FileOutputStream
 import java.io.FileInputStream
