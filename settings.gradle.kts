@@ -30,7 +30,6 @@ include(":data")
 include(":domain")
 
 include(":feature:dashboard")
-include(":feature:debug")
 include(":feature:editor")
 include(":feature:onboarding")
 include(":feature:settings")
