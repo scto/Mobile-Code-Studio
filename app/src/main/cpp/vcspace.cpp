@@ -32,14 +32,12 @@ private:
     const char* str_;
 };
 
-extern "C" {
-
-JNIEXPORT jstring JNICALL
+extern "C" JNIEXPORT jstring JNICALL
 Java_com_scto_mcs_core_NativeBridge_stringFromJNI(JNIEnv* env, jobject /* this */) {
     return env->NewStringUTF("VCSpace Native Bridge Initialized");
 }
 
-JNIEXPORT jint JNICALL
+extern "C" JNIEXPORT jint JNICALL
 Java_com_scto_mcs_core_NativeBridge_nativeCreateSymlink(JNIEnv* env, jobject /* this */, jstring target, jstring linkpath) {
     JniString target_str(env, target);
     JniString linkpath_str(env, linkpath);
@@ -55,7 +53,7 @@ Java_com_scto_mcs_core_NativeBridge_nativeCreateSymlink(JNIEnv* env, jobject /* 
     return result;
 }
 
-JNIEXPORT jboolean JNICALL
+extern "C" JNIEXPORT jboolean JNICALL
 Java_com_scto_mcs_core_NativeBridge_nativeCheckSymlinkSupport(JNIEnv* env, jobject /* this */, jstring testDir) {
     JniString dir_str(env, testDir);
     std::string testFile = std::string(dir_str.c_str()) + "/.symlink_test";
@@ -79,7 +77,7 @@ Java_com_scto_mcs_core_NativeBridge_nativeCheckSymlinkSupport(JNIEnv* env, jobje
     return supported ? JNI_TRUE : JNI_FALSE;
 }
 
-JNIEXPORT jint JNICALL
+extern "C" JNIEXPORT jint JNICALL
 Java_com_scto_mcs_core_NativeBridge_nativeCheckFileSystemCapabilities(JNIEnv* env, jobject /* this */, jstring testDir) {
     JniString dir_str(env, testDir);
     std::string dir = dir_str.c_str();
@@ -112,6 +110,4 @@ Java_com_scto_mcs_core_NativeBridge_nativeCheckFileSystemCapabilities(JNIEnv* en
     }
 
     return capabilities;
-}
-
 }
