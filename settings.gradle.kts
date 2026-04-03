@@ -21,7 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Mobile-Code-Studio"
 include(":app")
-include(":core")
+include(":core:common")
 include(":core:ui")
 include(":core:utils")
 include(":termux")

@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation(project(":core:common"))
     implementation(project(":core:ui"))
     
     implementation("com.google.dagger:hilt-android:2.51")

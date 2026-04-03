@@ -47,7 +47,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation(project(":core:common"))
     implementation(project(":domain"))
     implementation(project(":data"))
     implementation(project(":feature:editor"))
