@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -53,6 +55,7 @@ dependencies {
     implementation(project(":feature:dashboard"))
     implementation(project(":feature:settings"))
     implementation(project(":feature:setup"))
+    implementation(project(":termux:application"))
 
     implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.appcompat:appcompat:1.7.0")
@@ -67,4 +70,8 @@ dependencies {
 
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.8.5")
+    
+    // Hilt
+    implementation("com.google.dagger:hilt-android:2.51")
+    kapt("com.google.dagger:hilt-compiler:2.51")
 }
