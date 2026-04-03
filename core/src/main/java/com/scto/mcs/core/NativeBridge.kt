@@ -15,6 +15,7 @@ class NativeBridge @Inject constructor() {
     private external fun nativeCreateSymlink(target: String, linkpath: String): Int
     private external fun nativeCheckSymlinkSupport(testDir: String): Boolean
     private external fun nativeCheckFileSystemCapabilities(testDir: String): Int
+    private external fun nativeCheckPermissionAccess(path: String): Int
 
     data class FileSystemCapabilities(
         val supportsSymlinks: Boolean,
@@ -57,5 +58,14 @@ class NativeBridge @Inject constructor() {
             supportsSymlinks = (result and 1) != 0,
             isWritable = (result and 2) != 0
         )
+    }
+
+    /**
+     * Prüft den Zugriff auf einen Pfad (Read/Write).
+     * @param path Der zu prüfende Pfad.
+     * @return 0 bei Erfolg, sonst errno.
+     */
+    fun checkPermissionAccess(path: String): Int {
+        return nativeCheckPermissionAccess(path)
     }
 }

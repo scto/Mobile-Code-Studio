@@ -111,3 +111,12 @@ Java_com_scto_mcs_core_NativeBridge_nativeCheckFileSystemCapabilities(JNIEnv* en
 
     return capabilities;
 }
+
+extern "C" JNIEXPORT jint JNICALL
+Java_com_scto_mcs_core_NativeBridge_nativeCheckPermissionAccess(JNIEnv* env, jobject /* this */, jstring path) {
+    JniString path_str(env, path);
+    if (access(path_str.c_str(), R_OK | W_OK) == 0) {
+        return 0;
+    }
+    return errno;
+}
