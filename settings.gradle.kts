@@ -20,23 +20,25 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Mobile-Code-Studio"
+
 include(":app")
+
 include(":core:common")
 include(":core:ui")
 include(":core:utils")
-include(":termux")
+include(":data")
+include(":domain")
 
+include(":feature:dashboard")
+include(":feature:debug")
+include(":feature:editor")
+include(":feature:onboarding")
+include(":feature:settings")
+include(":feature:setup")
+include(":feature:terminal")
+
+include(":termux")
 include(":termux:application")
 include(":termux:emulator")
 include(":termux:shared")
 include(":termux:view")
-
-include(":domain")
-include(":data")
-include(":feature:onboarding")
-include(":feature:setup")
-include(":feature:dashboard")
-include(":feature:editor")
-include(":feature:settings")
-include(":feature:debug")
-include(":feature:terminal")
