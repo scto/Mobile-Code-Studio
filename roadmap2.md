@@ -36,4 +36,6 @@ Diese Roadmap dokumentiert die geplanten Erweiterungen für die stabile Wiederhe
 
 3. Backup & Restore API: Kotlin-basierter Service zum Packen des gesamten Environments inklusive aller Symlink-Metadaten für Cloud-Backups.
 
+4. Environment Health Check: Service zur Integritätsprüfung von Containern (Validierung essenzieller Verzeichnisse und Binaries).
+
 Status: In Bearbeitung (Fokus auf Symlink-Restoration & JNI-Leaks)
