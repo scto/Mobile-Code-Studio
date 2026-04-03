@@ -17,6 +17,7 @@ android {
 dependencies {
     implementation(project(":termux:emulator"))
     implementation(project(":termux:shared"))
+    implementation(project(":termux:view"))
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.51")

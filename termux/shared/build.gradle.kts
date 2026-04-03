@@ -13,5 +13,5 @@ android {
 }
 
 dependencies {
-    // Add common dependencies here if needed
+    implementation("com.google.guava:guava:33.0.0-android")
 }
