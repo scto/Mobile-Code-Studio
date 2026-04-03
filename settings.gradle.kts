@@ -25,6 +25,12 @@ include(":core")
 include(":core:ui")
 include(":core:utils")
 include(":termux")
+
+include(":termux:application")
+include(":termux:emulator")
+include(":termux:shared")
+include(":termux:view")
+
 include(":domain")
 include(":data")
 include(":feature:onboarding")
