@@ -8,7 +8,7 @@ Konvertiere alle Java-Quelldateien in den angegebenen Submodulen nach Kotlin. Ve
 
 Verarbeite alle Dateien in den folgenden Verzeichnissen (inklusive aller Unterordner):
 
-1. Modul: :termux:application
+1. Modul: :termux:application (AKTUELL IN BEARBEITUNG)
 
    * Von: termux/application/src/main/java/com/
 
