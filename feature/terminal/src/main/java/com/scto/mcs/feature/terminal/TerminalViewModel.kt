@@ -1,7 +1,7 @@
 package com.scto.mcs.feature.terminal
 
 import androidx.lifecycle.ViewModel
-import com.scto.mcs.termux.session.TerminalSession
+import com.scto.mcs.feature.terminal.session.TerminalSession
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
