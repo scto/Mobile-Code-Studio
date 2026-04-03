@@ -1,0 +1,917 @@
+commit ec92b17b49cc9a0cfcc8ab3e4dc07275f10b2886
+Author: scto <tschmid35@gmail.com>
+Date:   Fri Apr 3 10:58:48 2026 +0000
+
+    refactor: group JNI functions in extern "C" block
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 94dcf68bdf642e9fe3a89962fd41109b0316a58f
+Author: scto <tschmid35@gmail.com>
+Date:   Fri Apr 3 10:55:23 2026 +0000
+
+    feat: add filesystem capability probe to native bridge
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit eb1df4de511503585fd4d1bb43a0bafb710b74db
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 21:57:57 2026 +0000
+
+    refactor: enhance write permission check in PermissionChecker
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit ad11d75cc32f06b6fe0980131f58be399129f79f
+Author: Thomas Schmid <1441369+scto@users.noreply.github.com>
+Date:   Thu Apr 2 23:55:17 2026 +0200
+
+    Revise roadmap with expanded project details
+    
+    Updated roadmap with detailed plans for technical infrastructure, permissions, performance, and UI/UX improvements.
+
+commit 4862a1fe2e6bd1043f2642275dc3279c1aab9794
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 21:48:36 2026 +0000
+
+    add aider prompts
+
+commit e1f0c1907ee44eec2a5d15182e37123e59701998
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 21:25:50 2026 +0000
+
+    feat: implement native filesystem symlink support check
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 45ad004489966e293764b939cee3153f0f85f0c3
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 21:24:00 2026 +0000
+
+    feat: integrate PermissionChecker into SetupViewModel
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 27d485af119bfbbc134da049f5cdc41b2283bdac
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 21:23:29 2026 +0000
+
+    feat: implement storage permission check in onboarding flow
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 65eddb263942a64f16e26d868a60e643ac03b133
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 18:27:37 2026 +0000
+
+    refactor: migrate TermuxInstaller to coroutines for non-blocking I/O
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit f211ff95f6b1259a83733f572c8e7e57ade1ab4b
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 18:19:36 2026 +0000
+
+    feat: implement atomic symlink creation in TermuxInstaller
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 72ca553ba24631570640b7954e3a3a2ca86607ee
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 18:10:27 2026 +0000
+
+    fix: handle null jstring inputs in JniString wrapper
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 306d4e9c3e2325b2220bf340b406b3490a6c9b1b
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 18:10:02 2026 +0000
+
+    refactor: wrap native symlink creation in Result type
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 44bbf39447f2d161074d632849184dc2742984f5
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 17:59:46 2026 +0000
+
+    refactor: implement RAII wrapper for JNI string handling
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit bcf4e78b2317349f16500fc473083c6f4db8cfec
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 17:43:38 2026 +0000
+
+    feat: implement TextMateLanguageBridge and EditorViewModel
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit a059e7a4b70728e356571023d403db1b3a416202
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 17:34:19 2026 +0000
+
+    feat: implement GrammarProvider and update MCSApplication initialization
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 479d97d7add974e19d0171c4f5f5be06b051bcfa
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 17:24:01 2026 +0000
+
+    feat: implement phase 9 with application initialization and theme loading
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 141a70885e3ba47e9d4f074d605fd17d6de3cecc
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 17:15:50 2026 +0000
+
+    feat: implement EditorConfigManager and integrate into MCSApplication
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 2a72863ae1f81d4e65fadd8e2fea3ae98764ab6f
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 17:12:07 2026 +0000
+
+    feat: implement dynamic theme switching and textmate grammar loading
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 97b7a45a9663ae73154e778c286395e5bf945aa3
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 17:01:31 2026 +0000
+
+    feat: implement EditorConfigManager and async app initialization
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit a35d3af354f3bc4cf105bfad1b898ee314b29477
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:55:32 2026 +0000
+
+    refactor: inject NativeBridge into TermuxInstaller
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit fc05e96bd216043d5b227088ae91a332a0b84815
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:53:59 2026 +0000
+
+    feat: implement editor screen and build functionality
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit fed0e39e2254cfadc399656366a4aeeee464c285
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:53:03 2026 +0000
+
+    feat: implement dashboard feature with git cloning support
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 961a92a6c0d86b96f3df26b7f4f217a7aa2586aa
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:52:10 2026 +0000
+
+    feat: implement onboarding and termux setup flow
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 4d908672501dee7f1f182e214e7da568729da869
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:50:37 2026 +0000
+
+    feat: implement design system and ui hilt module
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit fd7c26b67ddb6f045a782433bc2c89f8b9694a50
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:49:50 2026 +0000
+
+    feat: implement core terminal environment and bootstrap configuration
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit def8aa7c30bcfbf14ce2efec3385d7d3d2a555fe
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:48:49 2026 +0000
+
+    feat: implement bootstrap download and installation logic
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit b226af6eb60d92faef409325f97a8ba9032933ca
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:45:00 2026 +0000
+
+    refactor: inject BootstrapConfig into TermuxInstaller
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit beae27a08f22df601e190835ab6783140ab9e0be
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:42:55 2026 +0000
+
+    refactor: update BootstrapConfig to support dynamic ABI detection
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 7014aa9587ae60c6b5c800ee7d9481698d33abc6
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:29:33 2026 +0000
+
+    feat: add X86_64_URL to BootstrapConfig
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 7a0e1506d077b52ba131f654d36d1fddcf66f2ea
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:29:05 2026 +0000
+
+    feat: add ARM_URL to BootstrapConfig
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit a310f1bf0f28a8fe320321dbab65eaf52e15ddfa
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:27:52 2026 +0000
+
+    feat: add BootstrapConfig for aarch64 URL
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit f18596272ff69f5504be9157f93c2892408bbdfb
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:27:16 2026 +0000
+
+    refactor: improve symlink creation robustness in TermuxInstaller
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 5a34105d955f8d3ef86236a188f5dddcabe0c50e
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:22:27 2026 +0000
+
+    feat: implement NativeBridge for JNI communication
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 546b3a9cb3c791afe88f99cdffd66429f0f91714
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:14:29 2026 +0000
+
+    feat: implement symlink restoration in TermuxInstaller
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit a2bb2a33cb6202c46f4c2593645e02f079700216
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:13:01 2026 +0000
+
+    feat: implement native symlink creation
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 221b48c5985ca4d8426b9efb2cda81882781cd1d
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 16:09:13 2026 +0000
+
+    feat: add TermuxInstaller and native JNI bridge implementation
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit a87b553a2172ce9f1639249f857fe6204d203010
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 14:48:38 2026 +0000
+
+    feat: implement core UI design system and theme
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 88e8bdb896eb8537f737e94a0cbff2eddfbac66b
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 14:41:17 2026 +0000
+
+    feat: implement TermuxConstants and refactor path management
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 78d89e37ba3e306f6bea2ff27764499be678a5b5
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 14:39:14 2026 +0000
+
+    build: setup project infrastructure and dependencies
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit f3083d292d97f3a2bf4b4a51f6a651001d6a17ef
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 14:05:53 2026 +0000
+
+    feat: setup native build environment for Termux integration
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit d9ca24731f8f2c37cce6e70e06bdeb6e50b9cfca
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:40:04 2026 +0000
+
+    feat: implement editor feature with sora editor and build support
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit d32b74cad53d379438bb8cf07548463264a5f370
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:36:51 2026 +0000
+
+    feat: implement onboarding and setup feature modules
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 612c1a7393bd019b3017d99bdb1048de0a5f7b0e
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:34:55 2026 +0000
+
+    feat: implement domain and data layers with Hilt DI
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit fb8acf58cc8379e68a856f911779904fe11fc8ac
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:33:25 2026 +0000
+
+    feat: initialize core:ui module with design system and components
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit dd262fc188a6e4ff38c90c600673472b9d59a9c6
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:32:16 2026 +0000
+
+    feat: implement core module managers and hilt configuration
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit afec38863e0b88101cdc65633a4c87fc063ee195
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:30:47 2026 +0000
+
+    build: configure project structure and gradle dependencies
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit b5862969e1c7faa1aac33f0a16a68d0b6fe4117d
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:22:15 2026 +0000
+
+    feat: add feature:setup module
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 5342a8536ab228eb39cdd506340507349f78a704
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:21:43 2026 +0000
+
+    feat: update navigation flow to onboarding, setup, and dashboard
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit b2117e1700dcc8366dead913797de1db240d17a7
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:21:31 2026 +0000
+
+    refactor: extract navigation logic to AppNavigation composable
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit f369579f296847c4ec3efef09f44e3811325f7ca
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:21:18 2026 +0000
+
+    feat: implement navigation architecture and compose setup
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 447fa17f65deb71b10173881e7230068c71bf4ec
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:20:47 2026 +0000
+
+    feat: scaffold feature:settings module
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 2f6eb2eafc688cddca82bfb2197d0772ef21b9e8
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:20:17 2026 +0000
+
+    feat: implement basic code editor UI and engine
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 99fdbd0a91332bea69a3df5ba0336e7bf0022b28
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:19:36 2026 +0000
+
+    feat: scaffold feature:dashboard module
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 281a57a9cef4fc74cbcab1bed5d5d8cb0664c95b
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:18:52 2026 +0000
+
+    feat: add onboarding module with storage permissions
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit e798d97b7f3437e2a0ccee315c986d56898b8bb7
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:16:32 2026 +0000
+
+    build: configure core module with compose and android library settings
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 00cbccd0635873bf0e9070786550c8ce2fa2edbf
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:15:50 2026 +0000
+
+    build: configure build files for core, domain, and data modules
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 93248136d88a5393c8b6e7be1e95addb7902c6f0
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:14:35 2026 +0000
+
+    feat: implement multi-module project structure
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 699a4dc38236a50b189d65dca63a19a0c77088f8
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:13:04 2026 +0000
+
+    feat: scaffold initial project structure
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 918fafad6371d86192bcd23241a98fcefa14cce4
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 15:08:57 2026 +0200
+
+    revert complet
+
+commit 0e70740bd160683b88656d581f1e8a0f06ffe421
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:05:20 2026 +0000
+
+    build: configure project structure and update dependencies
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit ab17eb9f100aa1b26b7e96201ddefc517b03a2f1
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:04:59 2026 +0000
+
+    build: configure project versions in libs.versions.toml
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit e9e2d28a6a03d5d082fe0a71705a2176b6493887
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:04:34 2026 +0000
+
+    build: remove incorrect hilt-compiler from buildscript
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 643bb8e0139ee7650740ad743de4485ae564df69
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 13:00:30 2026 +0000
+
+    feat: add FileSystemUtils and FileProvider configuration
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 6196651b8cab79149d2339f4e2ead8b792d76ede
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 12:59:52 2026 +0000
+
+    feat: add EditorConfigManager for grammar loading and theme syncing
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 2cffb079e577011cfb2125a1dd52cc5991bf41a7
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 12:59:45 2026 +0000
+
+    feat: implement TerminalEnvironment as Hilt singleton in core module
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit f5b61a714ace5820fdea808be0c5b3da7bb40628
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 12:57:35 2026 +0000
+
+    build: update dependencies and configure project structure
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 76fb4fd5aa16732bb180453c51bd8aa149da36c8
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 12:57:17 2026 +0000
+
+    build: configure project dependencies in libs.versions.toml
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 7fd2f610b3c844a6f46160d489c65725a0e8d464
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 14:51:25 2026 +0200
+
+    initial commit
+
+commit 4270661f6a5479b1917d51d314a6ca6d65f81422
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 12:03:47 2026 +0000
+
+    feat: Add setup, settings, debug modules and update core dependencies
+    
+    Co-authored-by: aider (gemini/gemini-2.5-flash) <aider@aider.chat>
+
+commit 4490745dee17949596cf33962f75ea1dd96c228a
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 12:02:10 2026 +0000
+
+    build: Add core module to settings.gradle.kts
+    
+    Co-authored-by: aider (gemini/gemini-2.5-flash) <aider@aider.chat>
+
+commit 986e69f672a0a026e3524c3179f43956de183181
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 12:01:04 2026 +0000
+
+    fix: Remove duplicate package declaration
+    
+    Co-authored-by: aider (gemini/gemini-2.5-flash) <aider@aider.chat>
+
+commit 73b390c65eaab8a288574223ecd37df48ef25351
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 12:00:44 2026 +0000
+
+    feat: Scaffold core MCS architecture, update Gradle, manifest, and app setup
+    
+    Co-authored-by: aider (gemini/gemini-2.5-flash) <aider@aider.chat>
+
+commit e9cbf6a1f8084c8c164b065a824b87a8fd428d9c
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 11:21:25 2026 +0000
+
+    feat: initialize core UI module and design system
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 6d8cf0b5e3ef089e8fc80e3b59fd81e1cd9f9e56
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 11:19:26 2026 +0000
+
+    feat: initialize core:ui module with design system and components
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 06e6f54233eeb3ca188decff85d8148436ba5949
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 10:48:00 2026 +0000
+
+    feat: implement project mapper and update repository implementation
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 942fb851123d828164d7e4d6e222599557a20984
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 10:45:36 2026 +0000
+
+    build: configure domain module build settings
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit ef6a010ff0ad96df131fd9d1c11dc197c554e4a8
+Author: scto <tschmid35@gmail.com>
+Date:   Thu Apr 2 10:44:07 2026 +0000
+
+    feat: implement project deletion and build log streaming
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 71794c1b40236bae7586ce1f7fa3f4a156316c4b
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 20:33:17 2026 +0000
+
+    feat: initialize domain and data modules
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 45133f4c8374e43b9ff1914cbcf12eaf4efd9772
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 20:31:48 2026 +0000
+
+    feat: initialize domain and data modules for clean architecture
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 147935e221b5d6cc4a4d99339c71160c7c7b0243
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 20:12:13 2026 +0000
+
+    feat: implement GitManager, TemplateEngine, and core manifest
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 08f5b6dee79d03186d57924cfc0550aec02dfb92
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 20:11:44 2026 +0000
+
+    build: configure app module with core and hilt dependencies
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit c92d19e54afb74de8f7115cd50acccb4cb2d3c96
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 20:08:03 2026 +0000
+
+    feat: initialize core module foundation with Hilt DI and managers
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit b43c7ce1794bc62a6ddb8882efab4a889a5a1751
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 19:52:41 2026 +0000
+
+    feat: implement project template wizard and engine
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit ece3fe662a837e65c486528da50924ea4098b353
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 19:51:58 2026 +0000
+
+    feat: implement project template wizard and engine
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit cd44627df52aea37f517207a8d5453ad258ab3cd
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 19:45:53 2026 +0000
+
+    feat: implement logcat viewer module with streaming and filtering
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 54a3498ffd046955b7120459392e6abf3cdc32df
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 19:23:16 2026 +0000
+
+    feat: implement Logcat Viewer module
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit fa3bbe56656aea76e6265223791b430c40b9b472
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 19:22:49 2026 +0000
+
+    feat: implement Logcat viewer module
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 140dafa25903bd87f03f31e15a630648a154007c
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 19:05:42 2026 +0000
+
+    feat: implement gradle build system integration
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 360508537c4f1449731b4bb7453a0df1d7a07ea0
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 19:05:08 2026 +0000
+
+    feat: implement gradle build system integration
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit a7a9853b8df26eca05dc0e8161f1a7a1ae26598a
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 19:04:28 2026 +0000
+
+    feat: implement Gradle build system integration
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 0c5d89ffac1f63a75a62fe84c2a008918bc81b90
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 18:59:43 2026 +0000
+
+    feat: implement JDK and SDK bootstrap path configuration
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 78648d1be9f429217c38dddc2162de0aad7a7ec2
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 18:59:02 2026 +0000
+
+    feat: add terminal bootstrap and set working directory
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 8fdc8c54082a6a92e42ea5f425b2d1f524a85797
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 18:57:58 2026 +0000
+
+    feat: implement terminal environment bootstrap and setup logic
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 7d332a4a887480df5d7ec2bdaa047189f63f633e
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 18:53:32 2026 +0000
+
+    feat: implement terminal emulation and bootstrap process
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 0b48d4ed0e9fc1f85031794e739ff8119be718cc
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 18:48:38 2026 +0000
+
+    feat: implement app initialization and core environment managers
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 034204202483f78fdafd006eb380acc8a9c68988
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 18:32:49 2026 +0000
+
+    feat: integrate sora-editor and implement editor configuration logic
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 1ab3505d73ec5317a3cb4c1f75798bb4c96ed6ce
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 18:27:06 2026 +0000
+
+    feat: implement git repository cloning with progress tracking
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 7784a25622b77c7aa851f418998568cbcb5e8c15
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 18:18:38 2026 +0000
+
+    build: add sora-editor extensions to version catalog
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit c22ce2fb55ec4dcb51a6887ac9d077382b2bb838
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 18:09:53 2026 +0000
+
+    build: add jgit and update sora-editor in version catalog
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 5f89a702a0679dbc770b3943d12420257cbd9357
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 17:52:10 2026 +0000
+
+    feat: implement settings screen with persistence
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 925aef0869ac36bae2b1a9ede63c889b6197f5e3
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 17:51:26 2026 +0000
+
+    feat: implement settings screen feature
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit a66bdc3878a27047f32ce7b48b8c2c682092c202
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 17:50:41 2026 +0000
+
+    feat: implement environment setup process and UI in feature:setup
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 877a97a429b9b05e35aa389852d368bd71ef9983
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 17:50:18 2026 +0000
+
+    feat: implement Termux environment initialization and JDK/SDK selection
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 90e4e1353aaba58a3132c84e2fa973316075d559
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 17:41:25 2026 +0000
+
+    feat: implement high-performance code editor using sora-editor
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit f0617591ce7a66542b9dda82d71ded0ee8566a93
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 17:25:09 2026 +0000
+
+    feat: implement git integration and clone project dialog
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit e9aed489a1f5366e7f6959430ba90b58462b0c63
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 17:17:40 2026 +0000
+
+    feat: implement setup screen and bootstrap logic
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 67b200a3a94239a1b3bd1a7e8084d4b397583096
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 17:12:20 2026 +0000
+
+    feat: scaffold project structure and implement storage permissions
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 5014b6fb964c68e804d651aec0cfdec318e67d4c
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 17:06:34 2026 +0000
+
+    feat: setup project structure and implement core and onboarding modules
+    
+    Co-authored-by: aider (gemini/gemini-3.1-flash-lite-preview) <aider@aider.chat>
+
+commit 3aa80a814205932655e4f97008d0281ab5d13e2f
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 16:19:22 2026 +0000
+
+    feat: Implement TextMate syntax highlighting and editor features
+    
+    Co-authored-by: aider (gemini/gemini-2.5-flash) <aider@aider.chat>
+
+commit 5da33c146c30f3a9e1812996545f054f0e4c7050
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 16:18:08 2026 +0000
+
+    feat: Integrate Rosemoe sora-editor and create basic EditorScreen
+    
+    Co-authored-by: aider (gemini/gemini-2.5-flash) <aider@aider.chat>
+
+commit c76331957012490e12a4d2bb3c9214276d97e6aa
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 16:17:37 2026 +0000
+
+    feat: Add create project screen for template selection
+    
+    Co-authored-by: aider (gemini/gemini-2.5-flash) <aider@aider.chat>
+
+commit e152623e6b35f170f294260a26e708cd4077dd4c
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 16:16:59 2026 +0000
+
+    feat: Add dashboard feature module
+    
+    Co-authored-by: aider (gemini/gemini-2.5-flash) <aider@aider.chat>
+
+commit fd35cfbaa53306af72114fc983f1141714f5a5a1
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 16:16:39 2026 +0000
+
+    feat: Set up multi-module project structure and initial Android scaffolding
+    
+    Co-authored-by: aider (gemini/gemini-2.5-flash) <aider@aider.chat>
+
+commit 5be43ff22e6e8933878c9711d12fb4e153e24ca0
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 16:15:03 2026 +0000
+
+    feat: Scaffold base Android project with Kotlin/Compose
+    
+    Co-authored-by: aider (gemini/gemini-2.5-flash) <aider@aider.chat>
+
+commit 788348bbcca3a1fa8e33ad5a515b6a53d7b3a52d
+Author: scto <tschmid35@gmail.com>
+Date:   Wed Apr 1 14:20:49 2026 +0000
+
+    add script
+
+commit af7a2902b68a951678bc36ab495424faa50db50b
+Author: Thomas Schmid <1441369+scto@users.noreply.github.com>
+Date:   Wed Apr 1 15:50:23 2026 +0200
+
+    Initial commit

@@ -1,0 +1,9 @@
+diff --git a/.gitignore b/.gitignore
+index e5cbb64..f791d95 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -32,3 +32,4 @@ google-services.json
+ 
+ # Android Profiling
+ *.hprof
++.aider*
