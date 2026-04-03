@@ -14,6 +14,12 @@ class NativeBridge @Inject constructor() {
 
     private external fun nativeCreateSymlink(target: String, linkpath: String): Int
     private external fun nativeCheckSymlinkSupport(testDir: String): Boolean
+    private external fun nativeCheckFileSystemCapabilities(testDir: String): Int
+
+    data class FileSystemCapabilities(
+        val supportsSymlinks: Boolean,
+        val isWritable: Boolean
+    )
 
     /**
      * Erstellt einen symbolischen Link.
@@ -37,5 +43,19 @@ class NativeBridge @Inject constructor() {
      */
     fun checkSymlinkSupport(testDir: String): Boolean {
         return nativeCheckSymlinkSupport(testDir)
+    }
+
+    /**
+     * Führt einen umfassenden Test der Dateisystem-Fähigkeiten durch.
+     * @param testDir Ein Verzeichnis, in dem der Test durchgeführt werden soll.
+     * @return FileSystemCapabilities Objekt mit den Testergebnissen.
+     */
+    fun checkFileSystemCapabilities(testDir: String): FileSystemCapabilities {
+        val result = nativeCheckFileSystemCapabilities(testDir)
+        // Bit 0: Symlinks, Bit 1: Writable
+        return FileSystemCapabilities(
+            supportsSymlinks = (result and 1) != 0,
+            isWritable = (result and 2) != 0
+        )
     }
 }

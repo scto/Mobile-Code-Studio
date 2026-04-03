@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <cerrno>
 #include <cstdio>
+#include <sys/stat.h>
 
 #define LOG_TAG "VCSpaceNative"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
@@ -74,4 +75,39 @@ Java_com_scto_mcs_core_NativeBridge_nativeCheckSymlinkSupport(JNIEnv* env, jobje
     }
 
     return supported ? JNI_TRUE : JNI_FALSE;
+}
+
+extern "C" JNIEXPORT jint JNICALL
+Java_com_scto_mcs_core_NativeBridge_nativeCheckFileSystemCapabilities(JNIEnv* env, jobject /* this */, jstring testDir) {
+    JniString dir_str(env, testDir);
+    std::string dir = dir_str.c_str();
+    
+    int capabilities = 0;
+
+    // 1. Check Writable
+    std::string testFile = dir + "/.write_test";
+    FILE* f = fopen(testFile.c_str(), "w");
+    if (f) {
+        fclose(f);
+        unlink(testFile.c_str());
+        capabilities |= 2; // Bit 1 set
+    }
+
+    // 2. Check Symlinks
+    std::string symlinkTestFile = dir + "/.symlink_test";
+    std::string symlinkLinkFile = dir + "/.symlink_test_link";
+    
+    // Create dummy file for symlink test
+    FILE* f2 = fopen(symlinkTestFile.c_str(), "w");
+    if (f2) {
+        fclose(f2);
+        int result = symlink(symlinkTestFile.c_str(), symlinkLinkFile.c_str());
+        if (result == 0) {
+            capabilities |= 1; // Bit 0 set
+            unlink(symlinkLinkFile.c_str());
+        }
+        unlink(symlinkTestFile.c_str());
+    }
+
+    return capabilities;
 }
