@@ -10,7 +10,8 @@ import java.io.FileInputStream
 class TerminalSession(
     private val command: String,
     private val workingDirectory: String?,
-    private val environment: Array<String>?
+    private val environment: Array<String>?,
+    private val listener: TerminalSessionListener? = null
 ) {
     private var mFd: FileDescriptor? = null
     private var mProcessId: Int = 0
@@ -22,6 +23,9 @@ class TerminalSession(
         // mFd = Native.createSubprocess(command, workingDirectory, environment)
         // mInput = FileOutputStream(mFd)
         // mOutput = FileInputStream(mFd)
+        
+        // Beispiel für Listener-Aufruf bei Start
+        listener?.onSessionStarted()
     }
 
     fun write(data: ByteArray) {
@@ -32,5 +36,6 @@ class TerminalSession(
     fun close() {
         mInput?.close()
         mOutput?.close()
+        listener?.onSessionClosed()
     }
 }
