@@ -53,8 +53,11 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:ui"))
     implementation(project(":core:utils"))
+    
     implementation(project(":domain"))
+    
     implementation(project(":data"))
+    
     implementation(project(":feature:editor"))
     implementation(project(":feature:onboarding"))
     implementation(project(":feature:dashboard"))
