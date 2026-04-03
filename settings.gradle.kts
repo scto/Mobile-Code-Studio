@@ -23,6 +23,8 @@ rootProject.name = "Mobile-Code-Studio"
 include(":app")
 include(":core")
 include(":core:ui")
+include(":core:utils")
+include(":termux")
 include(":domain")
 include(":data")
 include(":feature:onboarding")
