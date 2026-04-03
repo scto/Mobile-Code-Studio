@@ -1,14 +1,14 @@
 package com.scto.mcs.termux.emulator
 
 import android.util.Base64
-import com.termux.terminal.TerminalBuffer
-import com.termux.terminal.TerminalColors
-import com.termux.terminal.TerminalOutput
-import com.termux.terminal.TerminalSessionClient
-import com.termux.terminal.TextStyle
-import com.termux.terminal.WcWidth
-import com.termux.terminal.KeyHandler
-import com.termux.shared.logger.Logger
+import com.scto.mcs.termux.emulator.TerminalBuffer
+import com.scto.mcs.termux.emulator.TerminalColors
+import com.scto.mcs.termux.shared.TerminalOutput
+import com.scto.mcs.termux.shared.TerminalSessionClient
+import com.scto.mcs.termux.emulator.TextStyle
+import com.scto.mcs.termux.emulator.WcWidth
+import com.scto.mcs.termux.emulator.KeyHandler
+import com.scto.mcs.termux.shared.logger.Logger
 import java.nio.charset.StandardCharsets
 import java.util.Arrays
 import java.util.Locale
