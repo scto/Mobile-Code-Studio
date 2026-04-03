@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.scto.mcs"
     compileSdk = 35
-    ndkVersion = "26.1.10909125"
+    ndkVersion = "29.0.14033849"
 
     defaultConfig {
         applicationId = "com.scto.mcs"

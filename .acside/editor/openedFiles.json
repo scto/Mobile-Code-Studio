@@ -1,22 +1,37 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/settings.gradle.kts",
+      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/app/src/main/cpp/CMakeLists.txt",
       "selection": {
         "end": {
-          "column": 29,
-          "index": 677,
-          "line": 31
+          "column": 0,
+          "index": 0,
+          "line": 0
         },
         "start": {
-          "column": 29,
-          "index": 677,
-          "line": 31
+          "column": 0,
+          "index": 0,
+          "line": 0
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/build.gradle.kts",
+      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/app/build.gradle.kts",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/data/build.gradle.kts",
       "selection": {
         "end": {
           "column": 0,
@@ -31,5 +46,5 @@
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/build.gradle.kts"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/data/build.gradle.kts"
 }
