@@ -1,36 +1,23 @@
-/*
- *  This file is part of AndroidIDE.
- *
- *  AndroidIDE is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  AndroidIDE is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *   along with AndroidIDE.  If not, see <https://www.gnu.org/licenses/>.
- */
-
-
-import com.tom.rv2ide.build.config.BuildConfig
-
 plugins {
     id("com.android.library")
-    id("kotlin-android")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
-    namespace = "com.termux.view"
+    namespace = "com.scto.mcs.termux.view"
+    compileSdk = 35
+
+    defaultConfig {
+        minSdk = 26
+    }
 }
 
 dependencies {
-    api(projects.termux.emulator)
+    implementation(project(":termux:emulator"))
+    implementation(project(":termux:shared"))
 
-    implementation(libs.androidx.annotation)
-
-    implementation(projects.core.resources)
+    // Compose
+    implementation(platform("androidx.compose:compose-bom:2024.09.00"))
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.material3:material3")
 }
