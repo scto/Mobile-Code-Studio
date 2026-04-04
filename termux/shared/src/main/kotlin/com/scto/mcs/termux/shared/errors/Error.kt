@@ -1,8 +1,8 @@
 package com.scto.mcs.termux.shared.errors
 
 import android.content.Context
-import com.scto.mcs.termux.shared.logger.Logger
-import com.scto.mcs.termux.shared.markdown.MarkdownUtils
+import com.termux.shared.logger.Logger
+import com.termux.shared.markdown.MarkdownUtils
 import java.io.Serializable
 import java.util.ArrayList
 import java.util.Collections
