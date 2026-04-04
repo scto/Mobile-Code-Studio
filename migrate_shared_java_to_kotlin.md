@@ -1,26 +1,25 @@
-Aider Task: Java zu Kotlin Migration für :termux:shared
-1. Zielsetzung
-Konvertiere alle Java-Quelldateien im Verzeichnis termux/shared/src/main/java/ systematisch nach Kotlin. Die Dateien sollen nach termux/shared/src/main/kotlin/ verschoben werden, wobei die ursprünglichen Java-Dateien gelöscht werden.
-2. Pfad-Spezifikationen
-Quelle: termux/shared/src/main/java/
-Ziel: termux/shared/src/main/kotlin/
-Paket-Basis: com.scto.mcs.termux.shared
-3. Workflow & Transformations-Regeln
-Führe für jede Datei folgende Schritte aus:
-Konvertierung: Erzeuge sauberen Kotlin-Code.
-Nutze data class für reine Datenmodelle.
-Nutze Kotlin Properties (val/var) anstelle von Getter/Setter-Methoden.
-Korrektur bekannter Migrationsfehler:
-UnixConstants: Entferne das Schlüsselwort const bei Variablen, deren Wert erst zur Laufzeit (z. B. via JNI) feststeht. Nutze dort einfaches val.
-Annotations: Ersetze android.support.annotation oder javax.annotation durch androidx.annotation.NonNull oder entferne sie ganz, da Kotlin Null-Safety nativ über das Typsystem (String vs String?) regelt.
-Coroutines: Wenn Java-Code Thread oder Handler nutzt, prüfe, ob eine Konvertierung zu withContext(Dispatchers.IO) sinnvoll ist (vor allem im TermuxInstaller).
-Paketnamen: Ändere das Package-Statement in jeder Datei auf com.scto.mcs.termux.shared.[unterpaket].
-Dateisystem:
-Erstelle die Ziel-Ordnerstruktur unter src/main/kotlin/.
-Speichere die neue .kt Datei.
-Lösche die ursprüngliche .java Datei sofort nach erfolgreicher Migration.
-4. Qualitätskontrolle
-Vermeide den "Double Bang" Operator !!. Nutze stattdessen Safe-Calls ?. oder elvis Operatoren ?:.
-Stelle sicher, dass companion object Blöcke für statische Member korrekt angelegt werden.
-Anweisung an Aider:
-"Arbeite dich methodisch durch alle Unterordner von termux/shared/src/main/java/. Konvertiere jede Datei nach Kotlin, verschiebe sie nach src/main/kotlin/ und lösche das Java-Original. Bestätige mir den Abschluss für jeden Unterordner (errors, file, installer, logger, markdown)."
+Aider Task: Step-by-Step Java-zu-Kotlin Migration (:termux:shared)
+​1. Zielsetzung
+​Konvertiere alle Java-Quelldateien im Modul :termux:shared nach Kotlin. Die Migration erfolgt schrittweise pro Unterordner, um maximale Präzision zu gewährleisten.
+​2. Pfad-Definitionen
+​Basis-Quelle: termux/shared/src/main/java/com/scto/mcs/termux/shared/
+​Basis-Ziel: termux/shared/src/main/kotlin/com/scto/mcs/termux/shared/
+​3. Der Migrations-Workflow (Stufe für Stufe)
+​Bearbeite die Unterordner in dieser exakten Reihenfolge. Schließe einen Ordner komplett ab (inkl. Löschen der Java-Dateien), bevor du den nächsten startest:
+​STEP 1: errors/ (Errno.kt, Error.kt etc.)
+​STEP 2: file/ (Inkl. filesystem/ und UnixConstants.kt)
+​STEP 3: installer/ (TermuxInstaller.kt etc.)
+​STEP 4: logger/ (Logger.kt etc.)
+​STEP 5: markdown/ (MarkdownUtils.kt etc.)
+​STEP 6: Alle verbleibenden Ordner (models, net, shell, termux etc.)
+​4. Konvertierungs-Regeln pro Datei
+​Properties: Wandle Getter/Setter in Kotlin-Properties (val/var) um.
+​Null-Safety: Nutze ? für Nullable-Typen. Entferne @NonNull-Annotationen, da Kotlin dies nativ im Typ-System löst.
+​UnixConstants Fix: Entferne das Schlüsselwort const bei Werten, die via JNI/Laufzeit ermittelt werden (nur val verwenden).
+​Dateisystem-Aktion:
+​Erstelle die Zielstruktur unter src/main/kotlin/....
+​Lösche die .java Datei sofort, nachdem die .kt Datei erfolgreich erstellt und geprüft wurde.
+​5. Interaktions-Anweisung
+​"Bitte arbeite jetzt STEP 1 ab. Wenn du mit dem Ordner errors/ fertig bist und alle Java-Dateien dort gelöscht hast, halte an und frage mich: 'Soll ich mit STEP 2 (file/) fortfahren?'"
+​Befehl an Aider:
+"Lies die migrate_shared_step_by_step.md. Wir starten mit STEP 1. Konvertiere den Inhalt von termux/shared/src/main/java/com/scto/mcs/termux/shared/errors/ nach Kotlin, verschiebe ihn nach src/main/kotlin und lösche die Java-Originale."
