@@ -2,12 +2,15 @@ package com.scto.mcs.feature.editor
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Core engine responsible for managing the IDE state,
  * file operations, and syntax highlighting logic.
  */
-class EditorEngine {
+@Singleton
+class EditorEngine @Inject constructor() {
 
     private val _codeContent = MutableStateFlow("")
     val codeContent: StateFlow<String> = _codeContent

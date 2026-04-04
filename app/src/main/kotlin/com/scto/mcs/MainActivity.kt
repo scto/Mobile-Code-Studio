@@ -7,11 +7,12 @@ import androidx.navigation.compose.rememberNavController
 import com.scto.mcs.feature.editor.EditorEngine
 import com.scto.mcs.navigation.AppNavigation
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     
-    private val editorEngine = EditorEngine()
+    @Inject lateinit var editorEngine: EditorEngine
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
