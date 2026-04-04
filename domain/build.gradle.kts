@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
@@ -22,5 +24,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
 }
