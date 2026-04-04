@@ -9,6 +9,7 @@ import android.view.InputDevice
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
+import android.widget.EditText
 import androidx.drawerlayout.widget.DrawerLayout
 import com.scto.mcs.termux.application.TermuxActivity
 import com.scto.mcs.termux.application.models.UserAction
@@ -19,7 +20,7 @@ import com.scto.mcs.termux.shared.termux.settings.properties.TermuxPropertyConst
 import com.scto.mcs.termux.shared.termux.terminal.TermuxTerminalViewClientBase
 import com.scto.mcs.termux.shared.view.KeyboardUtils
 import com.scto.mcs.termux.shared.view.ViewUtils
-import com.termux.R
+import com.scto.mcs.core.resources.R
 import com.termux.terminal.KeyHandler
 import com.termux.terminal.TerminalSession
 import com.termux.view.TerminalView

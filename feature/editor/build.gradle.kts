@@ -35,7 +35,8 @@ android {
 dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:ui"))
-    implementation(project(":domain"))
+    implementation(project(":core:resources"))
+    implementation(project(":core:domain"))
     
     implementation("com.google.dagger:hilt-android:2.51")
     kapt("com.google.dagger:hilt-compiler:2.51")

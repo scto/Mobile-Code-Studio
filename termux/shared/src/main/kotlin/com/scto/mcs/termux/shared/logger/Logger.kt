@@ -5,7 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
-import com.scto.mcs.termux.shared.R
+import com.scto.mcs.core.resources.R
 import com.scto.mcs.termux.shared.data.DataUtils
 import java.io.IOException
 import java.io.PrintWriter

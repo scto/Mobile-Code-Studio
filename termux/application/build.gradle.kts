@@ -22,6 +22,7 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:ui"))
     implementation(project(":core:utils"))
+    implementation(project(":core:resources"))
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.51")

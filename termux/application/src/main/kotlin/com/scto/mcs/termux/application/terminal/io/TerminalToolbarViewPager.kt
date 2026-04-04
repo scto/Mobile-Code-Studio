@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.termux.R
+import com.scto.mcs.core.resources.R
 import com.scto.mcs.termux.application.TermuxActivity
 import com.scto.mcs.termux.shared.termux.extrakeys.ExtraKeysView
 import com.termux.terminal.TerminalSession

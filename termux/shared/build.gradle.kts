@@ -22,6 +22,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:resources"))
     implementation("com.google.guava:guava:33.0.0-android")
     implementation("androidx.annotation:annotation:1.8.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")

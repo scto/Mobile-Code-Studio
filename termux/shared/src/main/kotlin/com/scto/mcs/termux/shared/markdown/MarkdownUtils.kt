@@ -12,7 +12,7 @@ import android.text.style.StyleSpan
 import android.text.style.TypefaceSpan
 import android.text.util.Linkify
 import androidx.core.content.ContextCompat
-import com.scto.mcs.termux.shared.R
+import com.scto.mcs.core.resources.R
 import com.scto.mcs.termux.shared.theme.ThemeUtils
 import io.noties.markwon.AbstractMarkwonPlugin
 import io.noties.markwon.Markwon

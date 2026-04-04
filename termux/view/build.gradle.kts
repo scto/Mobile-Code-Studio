@@ -22,6 +22,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:resources"))
     implementation(project(":termux:emulator"))
     implementation(project(":termux:shared"))
 

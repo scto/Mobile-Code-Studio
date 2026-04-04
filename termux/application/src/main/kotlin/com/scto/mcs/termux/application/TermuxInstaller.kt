@@ -8,23 +8,23 @@ import android.os.Environment
 import android.system.Os
 import android.util.Pair
 import android.view.WindowManager
-import com.termux.R
-import com.termux.shared.android.PackageUtils
-import com.termux.shared.errors.Error
-import com.termux.shared.file.FileUtils
-import com.termux.shared.interact.MessageDialogUtils
-import com.termux.shared.logger.Logger
-import com.termux.shared.markdown.MarkdownUtils
-import com.termux.shared.termux.TermuxConstants
-import com.termux.shared.termux.TermuxConstants.TERMUX_PREFIX_DIR
-import com.termux.shared.termux.TermuxConstants.TERMUX_PREFIX_DIR_PATH
-import com.termux.shared.termux.TermuxConstants.TERMUX_STAGING_PREFIX_DIR
-import com.termux.shared.termux.TermuxConstants.TERMUX_STAGING_PREFIX_DIR_PATH
-import com.termux.shared.termux.TermuxUtils
-import com.termux.shared.termux.crash.TermuxCrashUtils
-import com.termux.shared.termux.file.TermuxFileUtils
-import com.termux.shared.termux.shell.TermuxShellUtils.shellExists
-import com.termux.shared.termux.shell.command.environment.TermuxShellEnvironment
+import com.scto.mcs.core.resources.R
+import com.scto.mcs.termux.shared.android.PackageUtils
+import com.scto.mcs.termux.shared.errors.Error
+import com.scto.mcs.termux.shared.file.FileUtils
+import com.scto.mcs.termux.shared.interact.MessageDialogUtils
+import com.scto.mcs.termux.shared.logger.Logger
+import com.scto.mcs.termux.shared.markdown.MarkdownUtils
+import com.scto.mcs.termux.shared.termux.TermuxConstants
+import com.scto.mcs.termux.shared.termux.TermuxConstants.TERMUX_PREFIX_DIR
+import com.scto.mcs.termux.shared.termux.TermuxConstants.TERMUX_PREFIX_DIR_PATH
+import com.scto.mcs.termux.shared.termux.TermuxConstants.TERMUX_STAGING_PREFIX_DIR
+import com.scto.mcs.termux.shared.termux.TermuxConstants.TERMUX_STAGING_PREFIX_DIR_PATH
+import com.scto.mcs.termux.shared.termux.TermuxUtils
+import com.scto.mcs.termux.shared.termux.crash.TermuxCrashUtils
+import com.scto.mcs.termux.shared.termux.file.TermuxFileUtils
+import com.scto.mcs.termux.shared.termux.shell.TermuxShellUtils.shellExists
+import com.scto.mcs.termux.shared.termux.shell.command.environment.TermuxShellEnvironment
 import java.io.BufferedReader
 import java.io.ByteArrayInputStream
 import java.io.File
@@ -314,43 +314,4 @@ object TermuxInstaller {
                     for (i in dirs.indices) {
                         val dir = dirs[i] ?: continue
                         val symlinkName = "external-$i"
-                        Logger.logInfo(logTag, "Setting up storage symlinks at ~/storage/$symlinkName for \"" + dir.absolutePath + "\".")
-                        Os.symlink(dir.absolutePath, File(storageDir, symlinkName).absolutePath)
-                    }
-                }
-
-                // Create "Android/media/com.termux" symlinks
-                val mediaDirs = context.externalMediaDirs
-                if (mediaDirs != null && mediaDirs.isNotEmpty()) {
-                    for (i in mediaDirs.indices) {
-                        val dir = mediaDirs[i] ?: continue
-                        val symlinkName = "media-$i"
-                        Logger.logInfo(logTag, "Setting up storage symlinks at ~/storage/$symlinkName for \"" + dir.absolutePath + "\".")
-                        Os.symlink(dir.absolutePath, File(storageDir, symlinkName).absolutePath)
-                    }
-                }
-
-                Logger.logInfo(logTag, "Storage symlinks created successfully.")
-            } catch (e: Exception) {
-                Logger.logErrorAndShowToast(context, logTag, e.message)
-                Logger.logStackTraceWithMessage(logTag, "Setup Storage Error: Error setting up link", e)
-                TermuxCrashUtils.sendCrashReportNotification(context, logTag, title, null,
-                    "## $title\n\n" + Logger.getStackTracesMarkdownString(null, Logger.getStackTracesStringArray(e)),
-                    true, false, TermuxUtils.AppInfoMode.TERMUX_PACKAGE, true)
-            }
-        }.start()
-    }
-
-    private fun ensureDirectoryExists(directory: File): Error? {
-        return FileUtils.createDirectoryFile(directory.absolutePath)
-    }
-
-    @JvmStatic
-    fun loadZipBytes(): ByteArray {
-        // Only load the shared library when necessary to save memory usage.
-        System.loadLibrary("termux-bootstrap")
-        return getZip()
-    }
-
-    private external fun getZip(): ByteArray
-}
+                        Logger.logInfo(logTag, "Setting up storage symlinks at ~/storage/$symlinkName for \"" +

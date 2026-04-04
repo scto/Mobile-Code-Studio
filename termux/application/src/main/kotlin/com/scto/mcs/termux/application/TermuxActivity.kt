@@ -52,7 +52,7 @@ import com.scto.mcs.termux.shared.termux.shell.command.runner.terminal.TermuxSes
 import com.scto.mcs.termux.shared.termux.theme.TermuxThemeUtils
 import com.scto.mcs.termux.shared.theme.NightMode
 import com.scto.mcs.termux.shared.view.ViewUtils
-import com.termux.R
+import com.scto.mcs.core.resources.R
 import com.termux.terminal.TerminalSession
 import com.termux.view.TerminalView
 import com.tom.rv2ide.app.BaseIDEActivity
@@ -586,13 +586,13 @@ open class TermuxActivity : BaseIDEActivity(), ServiceConnection {
                     this, requestCode, !isPermissionCallback)) {
                 if (isPermissionCallback)
                     Logger.logInfoAndShowToast(this, LOG_TAG,
-                        getString(com.termux.shared.R.string.msg_storage_permission_granted_on_request))
+                        getString(com.scto.mcs.core.resources.R.string.msg_storage_permission_granted_on_request))
 
                 TermuxInstaller.setupStorageSymlinks(this)
             } else {
                 if (isPermissionCallback)
                     Logger.logInfoAndShowToast(this, LOG_TAG,
-                        getString(com.termux.shared.R.string.msg_storage_permission_not_granted_on_request))
+                        getString(com.scto.mcs.core.resources.R.string.msg_storage_permission_not_granted_on_request))
             }
         }.start()
     }
