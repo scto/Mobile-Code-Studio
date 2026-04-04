@@ -1,185 +1,20 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/feature/editor/build.gradle.kts",
+      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/fix_termux_shared_errors.md",
       "selection": {
         "end": {
-          "column": 53,
-          "index": 1576,
-          "line": 54
+          "column": 278,
+          "index": 2512,
+          "line": 27
         },
         "start": {
-          "column": 53,
-          "index": 1576,
-          "line": 54
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/gradle/libs.versions.toml",
-      "selection": {
-        "end": {
-          "column": 20,
-          "index": 139,
-          "line": 6
-        },
-        "start": {
-          "column": 20,
-          "index": 139,
-          "line": 6
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/settings.gradle.kts",
-      "selection": {
-        "end": {
-          "column": 10,
-          "index": 403,
-          "line": 15
-        },
-        "start": {
-          "column": 10,
-          "index": 403,
-          "line": 15
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/app/build.gradle.kts",
-      "selection": {
-        "end": {
-          "column": 19,
-          "index": 268,
-          "line": 10
-        },
-        "start": {
-          "column": 19,
-          "index": 268,
-          "line": 10
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/termux/shared/build.gradle.kts",
-      "selection": {
-        "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        },
-        "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/termux/application/build.gradle.kts",
-      "selection": {
-        "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        },
-        "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/termux/emulator/build.gradle.kts",
-      "selection": {
-        "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        },
-        "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/termux/view/build.gradle.kts",
-      "selection": {
-        "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        },
-        "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/build.gradle.kts",
-      "selection": {
-        "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        },
-        "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/domain/build.gradle.kts",
-      "selection": {
-        "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        },
-        "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/data/build.gradle.kts",
-      "selection": {
-        "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        },
-        "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/core/common/build.gradle.kts",
-      "selection": {
-        "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        },
-        "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 278,
+          "index": 2512,
+          "line": 27
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/core/common/build.gradle.kts"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/fix_termux_shared_errors.md"
 }
