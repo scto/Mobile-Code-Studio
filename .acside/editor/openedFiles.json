@@ -164,7 +164,22 @@
           "line": 0
         }
       }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/core/common/build.gradle.kts",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        }
+      }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/termux/application/build.gradle.kts"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/core/common/build.gradle.kts"
 }
