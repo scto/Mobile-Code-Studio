@@ -1,8 +1,9 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.kapt)
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -46,5 +47,10 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     
     // Sora Editor
-    implementation("io.github.jksys.sora-editor:editor:0.23.0")
+    implementation(platform("io.github.rosemoe:editor-bom:0.24.4"))
+    implementation("io.github.rosemoe:editor")
+    implementation("io.github.rosemoe:editor-lsp")
+    implementation("io.github.rosemoe:language-textmate")
+    implementation("io.github.rosemoe:language-treesitter")
+    implementation("io.github.rosemoe:language-java")
 }

@@ -2,8 +2,9 @@
 androidGradlePlugin = "8.11.2"
 kotlin = "2.2.0"
 hilt = "2.51"
-jgit = "6.8.0"
-soraEditor = "0.23.0"
+jgit = "7.1.0.202411261347-r"
+#jgit = "6.8.0"
+soraEditor = "0.24.4"
 composeBom = "2025.01.00"
 coroutines = "1.9.0"
 
