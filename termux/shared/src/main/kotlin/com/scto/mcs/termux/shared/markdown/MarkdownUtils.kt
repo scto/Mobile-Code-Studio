@@ -141,9 +141,4 @@ object MarkdownUtils {
             .build()
     }
 
-    fun getSpannedMarkdownText(context: Context?, string: String?): Spanned? {
-        if (context == null || string == null) return null
-        val markwon = getSpannedMarkwonBuilder(context)
-        return markwon.toMarkdown(string)
-    }
-}
+    fun getSpannedMarkdownText(context

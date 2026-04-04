@@ -5,7 +5,6 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
-import androidx.annotation.NonNull
 import com.scto.mcs.termux.shared.R
 import com.scto.mcs.termux.shared.data.DataUtils
 import java.io.IOException
@@ -13,7 +12,6 @@ import java.io.PrintWriter
 import java.io.StringWriter
 import java.util.ArrayList
 import java.util.Collections
-import java.util.List
 
 object Logger {
 
@@ -249,10 +247,9 @@ object Logger {
         return if (addDefaultTag && logLevel == DEFAULT_LOG_LEVEL) "$logLabel (default)" else logLabel
     }
 
-    @NonNull
     fun getDefaultLogTag(): String = DEFAULT_LOG_TAG
 
-    fun setDefaultLogTag(@NonNull defaultLogTag: String) {
+    fun setDefaultLogTag(defaultLogTag: String) {
         DEFAULT_LOG_TAG = if (defaultLogTag.length >= 23) defaultLogTag.substring(0, 22) else defaultLogTag
     }
 
