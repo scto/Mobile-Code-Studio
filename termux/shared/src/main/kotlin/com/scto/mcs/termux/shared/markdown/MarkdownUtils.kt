@@ -141,4 +141,8 @@ object MarkdownUtils {
             .build()
     }
 
-    fun getSpannedMarkdownText(context
+    fun getSpannedMarkdownText(context: Context, markdown: String?): Spanned? {
+        if (markdown == null) return null
+        return getSpannedMarkwonBuilder(context).toMarkdown(markdown)
+    }
+}
