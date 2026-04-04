@@ -1,6 +1,6 @@
 package com.scto.mcs.termux.shared.errors
 
-/** The [FunctionErrno] that defines function error messages and codes. */
+/** The class that defines function error messages and codes. */
 class FunctionErrno(type: String, code: Int, message: String) : Errno(type, code, message) {
 
     companion object {

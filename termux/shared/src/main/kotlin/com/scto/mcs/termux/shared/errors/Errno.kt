@@ -1,31 +1,34 @@
 package com.scto.mcs.termux.shared.errors
 
 import android.app.Activity
-import com.scto.mcs.termux.shared.logger.Logger
+import com.termux.shared.logger.Logger
 import java.util.Arrays
 import java.util.Collections
-import java.util.HashMap
 
-class Errno(val type: String, val code: Int, val message: String) {
+/** The class that defines error messages and codes. */
+open class Errno(
+    val type: String,
+    val code: Int,
+    val message: String
+) {
 
     companion object {
         private val map = HashMap<String, Errno>()
         const val TYPE = "Error"
-        private const val LOG_TAG = "Errno"
 
         val ERRNO_SUCCESS = Errno(TYPE, Activity.RESULT_OK, "Success")
         val ERRNO_CANCELLED = Errno(TYPE, Activity.RESULT_CANCELED, "Cancelled")
         val ERRNO_MINOR_FAILURES = Errno(TYPE, Activity.RESULT_FIRST_USER, "Minor failure")
         val ERRNO_FAILED = Errno(TYPE, Activity.RESULT_FIRST_USER + 1, "Failed")
 
-        init {
-            // Register default errors
-            map[ERRNO_SUCCESS.type + ":" + ERRNO_SUCCESS.code] = ERRNO_SUCCESS
-            map[ERRNO_CANCELLED.type + ":" + ERRNO_CANCELLED.code] = ERRNO_CANCELLED
-            map[ERRNO_MINOR_FAILURES.type + ":" + ERRNO_MINOR_FAILURES.code] = ERRNO_MINOR_FAILURES
-            map[ERRNO_FAILED.type + ":" + ERRNO_FAILED.code] = ERRNO_FAILED
-        }
+        private const val LOG_TAG = "Errno"
 
+        /**
+         * Get the [Errno] of a specific type and code.
+         *
+         * @param type The unique type of the [Errno].
+         * @param code The unique code of the [Errno].
+         */
         fun valueOf(type: String?, code: Int?): Errno? {
             if (type.isNullOrEmpty() || code == null) return null
             return map["$type:$code"]
@@ -36,15 +39,20 @@ class Errno(val type: String, val code: Int, val message: String) {
         map["$type:$code"] = this
     }
 
-    override fun toString(): String = "type=$type, code=$code, message=\"$message\""
+    override fun toString(): String {
+        return "type=$type, code=$code, message=\"$message\""
+    }
 
-    fun getError(): Error = Error(type, code, message)
+    fun getError(): Error {
+        return Error(type, code, message)
+    }
 
     fun getError(vararg args: Any?): Error {
         return try {
             Error(type, code, String.format(message, *args))
         } catch (e: Exception) {
             Logger.logWarn(LOG_TAG, "Exception raised while calling String.format() for error message of errno $this with args ${Arrays.toString(args)}\n${e.message}")
+            // Return unformatted message as a backup
             Error(type, code, "$message: ${Arrays.toString(args)}")
         }
     }
@@ -60,6 +68,7 @@ class Errno(val type: String, val code: Int, val message: String) {
             else Error(type, code, String.format(message, *args), throwablesList)
         } catch (e: Exception) {
             Logger.logWarn(LOG_TAG, "Exception raised while calling String.format() for error message of errno $this with args ${Arrays.toString(args)}\n${e.message}")
+            // Return unformatted message as a backup
             Error(type, code, "$message: ${Arrays.toString(args)}", throwablesList)
         }
     }
