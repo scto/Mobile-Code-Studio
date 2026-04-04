@@ -14,7 +14,22 @@
           "line": 27
         }
       }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/migrate_shared_java_to_kotlin.md",
+      "selection": {
+        "end": {
+          "column": 280,
+          "index": 2011,
+          "line": 25
+        },
+        "start": {
+          "column": 280,
+          "index": 2011,
+          "line": 25
+        }
+      }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/fix_termux_shared_errors.md"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/Mobile-Code-Studio/migrate_shared_java_to_kotlin.md"
 }
