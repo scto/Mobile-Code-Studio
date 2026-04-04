@@ -4,7 +4,6 @@ import android.database.Cursor
 import android.os.CancellationSignal
 import android.os.ParcelFileDescriptor
 import android.provider.DocumentsProvider
-import android.graphics.Point
 
 class MCSDocumentsProvider : DocumentsProvider() {
     override fun onCreate(): Boolean = true
