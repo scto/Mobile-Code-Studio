@@ -1,0 +1,10 @@
+
+## Module
+
+- `:core:common`: Gemeinsame Basis-Klassen und Utilities.
+- `:core:termux`: Integrierte Terminal-Engine.
+- `:feature:*`: Modulare UI-Features (Editor, Terminal, Settings).
+
+## Lizenz
+
+Dieses Projekt steht unter der GNU General Public License v3.
