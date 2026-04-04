@@ -52,34 +52,4 @@ android {
 dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:ui"))
-    implementation(project(":core:utils"))
-    
-    implementation(project(":domain"))
-    
-    implementation(project(":data"))
-    
-    implementation(project(":feature:editor"))
-    implementation(project(":feature:onboarding"))
-    implementation(project(":feature:dashboard"))
-    implementation(project(":feature:settings"))
-    implementation(project(":feature:setup"))
-    implementation(project(":termux:application"))
-
-    implementation("androidx.core:core-ktx:1.18.0")
-    implementation("androidx.appcompat:appcompat:1.7.1")
-    implementation("com.google.android.material:material:1.14.0-alpha10")
-
-    // Compose
-    val composeBom = platform("androidx.compose:compose-bom:2024.09.00")
-    implementation(composeBom)
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-
-    // Navigation
-    implementation("androidx.navigation:navigation-compose:2.8.5")
-    
-    // Hilt
-    implementation("com.google.dagger:hilt-android:2.59.2")
-    kapt("com.google.dagger:hilt-compiler:2.51")
-}
+    implementation(project(":
