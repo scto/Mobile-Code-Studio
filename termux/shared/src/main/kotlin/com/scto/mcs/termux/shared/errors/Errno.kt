@@ -1,13 +1,12 @@
 package com.scto.mcs.termux.shared.errors
 
 import android.app.Activity
-import androidx.annotation.NonNull
 import com.scto.mcs.termux.shared.logger.Logger
 import java.util.Arrays
 import java.util.Collections
 import java.util.HashMap
 
-class Errno(@NonNull val type: String, val code: Int, @NonNull val message: String) {
+class Errno(val type: String, val code: Int, val message: String) {
 
     companion object {
         private val map = HashMap<String, Errno>()
@@ -37,7 +36,6 @@ class Errno(@NonNull val type: String, val code: Int, @NonNull val message: Stri
         map["$type:$code"] = this
     }
 
-    @NonNull
     override fun toString(): String = "type=$type, code=$code, message=\"$message\""
 
     fun getError(): Error = Error(type, code, message)
@@ -68,6 +66,6 @@ class Errno(@NonNull val type: String, val code: Int, @NonNull val message: Stri
 
     fun equalsErrorTypeAndCode(error: Error?): Boolean {
         if (error == null) return false
-        return type == error.getType() && code == error.getCode()
+        return type == error.type && code == error.code
     }
 }
