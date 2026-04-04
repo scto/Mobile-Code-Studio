@@ -3,7 +3,7 @@ package com.scto.mcs.feature.terminal
 import androidx.lifecycle.ViewModel
 import com.scto.mcs.feature.terminal.session.TerminalSession
 import com.scto.mcs.feature.terminal.session.TerminalSessionListener
-import com.scto.mcs.termux.shared.TerminalPreferences
+import com.scto.mcs.core.termux.shared.TerminalPreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

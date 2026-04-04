@@ -6,7 +6,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.scto.mcs.termux.view.TerminalView
+import com.scto.mcs.core.termux.view.TerminalView
 
 @Composable
 fun TerminalScreen(
