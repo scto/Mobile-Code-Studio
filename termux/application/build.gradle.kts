@@ -17,8 +17,6 @@
 
 @file:Suppress("UnstableApiUsage")
 
-
-
 import com.itsaky.androidide.build.config.BuildConfig
 import com.itsaky.androidide.plugins.TerminalBootstrapPackagesPlugin
 
@@ -31,17 +29,14 @@ apply {
     plugin(TerminalBootstrapPackagesPlugin::class.java)
 }
 
-
-
-val packageVariant = System.getenv("TERMUX_PACKAGE_VARIANT") ?: "apt-android-7" // Default: "apt-android-7"
+val packageVariant = System.getenv("TERMUX_PACKAGE_VARIANT") ?: "apt-android-7"
 
 android {
-    namespace = "com.termux"
+    namespace = "com.scto.mcs.core.termux.application"
     ndkVersion = BuildConfig.ndkVersion
 
     defaultConfig {
-
-        buildConfigField("String", "TERMUX_PACKAGE_VARIANT", "\"" + packageVariant + "\"") // Used by TermuxApplication class
+        buildConfigField("String", "TERMUX_PACKAGE_VARIANT", "\"" + packageVariant + "\"")
 
         manifestPlaceholders["TERMUX_PACKAGE_NAME"] = BuildConfig.packageName
         manifestPlaceholders["TERMUX_APP_NAME"] = "AndroidIDE"
@@ -85,8 +80,8 @@ dependencies {
 
     implementation(projects.core.common)
     implementation(projects.core.resources)
-    implementation(projects.termux.view)
-    implementation(projects.termux.shared)
+    implementation(projects.core.termux.view)
+    implementation(projects.core.termux.shared)
     implementation(projects.utilities.preferences)
 
     testImplementation(projects.testing.unitTest)

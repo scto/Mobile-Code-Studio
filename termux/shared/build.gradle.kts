@@ -15,7 +15,6 @@
  *   along with AndroidIDE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 import com.itsaky.androidide.build.config.BuildConfig
 
 plugins {
@@ -23,10 +22,8 @@ plugins {
     id("kotlin-android")
 }
 
-
-
 android {
-    namespace = "com.termux.shared"
+    namespace = "com.scto.mcs.core.termux.shared"
     ndkVersion = BuildConfig.ndkVersion
 
     externalNativeBuild {
@@ -49,14 +46,12 @@ dependencies {
     implementation(libs.google.guava)
     implementation(libs.common.hiddenApiBypass)
 
-    // Do not increment version higher than 1.0.0-alpha09 since it will break ViewUtils and needs to be looked into
-    // noinspection GradleDependency
     implementation(libs.common.io)
     implementation(libs.common.termuxAmLib)
 
     implementation(projects.core.common)
     implementation(projects.core.resources)
-    implementation(projects.termux.view)
+    implementation(projects.core.termux.view)
     implementation(projects.utilities.buildInfo)
     implementation(projects.utilities.preferences)
 
