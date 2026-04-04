@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.scto.mcs.data"
+    namespace = "com.scto.mcs.core.data"
     compileSdk = 36
 
     defaultConfig {
@@ -24,7 +24,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":domain"))
+    implementation(project(":core:domain"))
     implementation(project(":core:common"))
     implementation(project(":core:utils"))
     
