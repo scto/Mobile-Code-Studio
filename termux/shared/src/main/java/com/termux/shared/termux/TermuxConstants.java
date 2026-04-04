@@ -341,7 +341,7 @@ public final class TermuxConstants {
     /** Termux app name */
     public static final String TERMUX_APP_NAME = "AndroidIDE"; // Default: "Termux"
     /** Termux package name */
-    public static final String TERMUX_PACKAGE_NAME = "com.tom.rv2ide"; // Default: "com.termux"
+    public static final String TERMUX_PACKAGE_NAME = "com.itsaky.androidide"; // Default: "com.termux"
     /** Termux GitHub repo name */
     public static final String TERMUX_GITHUB_REPO_NAME = "AndroidIDE"; // Default: "termux-app"
     /** Termux GitHub repo url */
@@ -354,8 +354,7 @@ public final class TermuxConstants {
     public static final String APK_RELEASE_ANDROIDIDE = "AndroidIDE"; // Default: "AndroidIDE"
 
     /** AndroidIDE APK release signing certificate SHA-256 digest */
-    // public static final String APK_RELEASE_ANDROIDIDE_SIGNING_CERTIFICATE_SHA256_DIGEST = "2DF2CBC1468CCB89DAD1733DC8E027BFF35EEEFA58C9EF35A5518A5D57912007"; // Default: "2DF2CBC1468CCB89DAD1733DC8E027BFF35EEEFA58C9EF35A5518A5D57912007"
-    public static final String APK_RELEASE_ANDROIDIDE_SIGNING_CERTIFICATE_SHA256_DIGEST = "7798C2C51A1F2A065A6951F2B56D6B52F1E23D655DD6013B7D70641521D84F2F"; // Default: "2DF2CBC1468CCB89DAD1733DC8E027BFF35EEEFA58C9EF35A5518A5D57912007"
+    public static final String APK_RELEASE_ANDROIDIDE_SIGNING_CERTIFICATE_SHA256_DIGEST = "2DF2CBC1468CCB89DAD1733DC8E027BFF35EEEFA58C9EF35A5518A5D57912007"; // Default: "2DF2CBC1468CCB89DAD1733DC8E027BFF35EEEFA58C9EF35A5518A5D57912007"
 
     /** F-Droid APK release */
     public static final String APK_RELEASE_FDROID = "F-Droid"; // Default: "F-Droid"

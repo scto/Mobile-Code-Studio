@@ -15,11 +15,7 @@
   <uses-permission android:name="android.permission.WAKE_LOCK" />
   <uses-permission android:name="android.permission.VIBRATE" />
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-  <!-- Add specific foreground service type permissions for Android 14+ -->
-  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
   <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-
-
   <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
   <uses-permission android:name="android.permission.READ_LOGS" />
   <uses-permission android:name="android.permission.DUMP" />
@@ -31,9 +27,8 @@
   <uses-permission
     android:name="android.permission.PACKAGE_USAGE_STATS"
     tools:ignore="ProtectedPermissions" />
-    
-    
-  <application android:largeHeap="true">
+
+  <application>
 
     <activity
       android:configChanges="orientation|screenSize|smallestScreenSize|density|screenLayout|keyboard|keyboardHidden|navigation"
@@ -79,16 +74,9 @@
       android:name=".shared.activities.ReportActivity$ReportActivityBroadcastReceiver" />
 
     <!-- Version >= 3.0. DeX Dual Mode support -->
-    <!-- Updated service declaration with foreground service type -->
     <service
       android:exported="false"
-      android:name=".app.TermuxService"
-      android:foregroundServiceType="specialUse">
-      <!-- Add metadata to explain the special use case -->
-      <meta-data
-        android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-        android:value="Terminal emulator and shell execution environment" />
-    </service>
+      android:name=".app.TermuxService" />
 
   </application>
 
