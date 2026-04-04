@@ -4,6 +4,7 @@ import android.app.Activity
 import com.termux.shared.logger.Logger
 import java.util.Arrays
 import java.util.Collections
+import java.util.HashMap
 
 /** The class that defines error messages and codes. */
 open class Errno(
