@@ -52,4 +52,15 @@ android {
 dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:ui"))
-    implementation(project(":
+    implementation(project(":core:data"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:utils"))
+    implementation(project(":core:resources"))
+    
+    implementation(project(":feature:dashboard"))
+    implementation(project(":feature:editor"))
+    implementation(project(":feature:onboarding"))
+    implementation(project(":feature:settings"))
+    implementation(project(":feature:setup"))
+    implementation(project(":feature:terminal"))
+}
